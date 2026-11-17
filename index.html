@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1422">
+<title>FLYLAB — Minecraft Prompt Builder</title>
+<style>
+:root{color-scheme:dark;--bg:#09111e;--panel:#152338;--panel2:#101d30;--line:#2c4056;--muted:#90a6bb;--text:#f2f8ff;--a:#77edb0;--b:#f6d478;--shadow:0 19px 50px #0209136e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse 65% 35% at 8% 0%,#153f37 0%,transparent 100%),radial-gradient(ellipse 55% 45% at 95% 0%,#183656 0%,transparent 95%),var(--bg);min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #bbffcf;outline-offset:3px}button:disabled{opacity:.65;cursor:not-allowed}.wrap{width:min(1330px,calc(100% - 60px));margin:auto}.topbar{height:90px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:950;letter-spacing:-1.2px}.brand-mark{width:41px;height:41px;display:grid;place-items:center;background:linear-gradient(135deg,#8ef8bf,#2b9b86);border-radius:12px;box-shadow:0 6px 22px #65f5aa28;font-size:22px;transform:rotate(-6deg)}.brand span{color:var(--a)}.top-note{color:#93aabc;font-size:11px;letter-spacing:2px;font-weight:900}.reset{background:#23384e;border:1px solid #344e67;color:#dbe9f6;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:800}.reset:hover{background:#304d62}.hero-head{padding:18px 0 25px}.eyebrow{color:#7cefaa;text-transform:uppercase;font-weight:900;font-size:11px;letter-spacing:2px}.eyebrow i{display:inline-block;width:7px;height:7px;background:#7cefaa;border-radius:50%;box-shadow:0 0 12px #77edb0;margin-right:9px}.hero-head h1{margin:11px 0 2px;font-size:clamp(36px,5.4vw,69px);letter-spacing:-3.2px;line-height:1.1;font-weight:950}.gradient{background:linear-gradient(110deg,#8af5ba,#b7ffdd 32%,#f6d478 90%);background-clip:text;color:transparent}.subhead{margin:9px 0 0;color:#9fb2c6}.layout{display:grid;grid-template-columns:1fr .94fr;align-items:start;gap:22px}.panel{border:1px solid var(--line);border-radius:23px;background:linear-gradient(140deg,#1b2b41e8,#111c30f7);box-shadow:var(--shadow);overflow:hidden}.nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #2d4059;gap:3px;padding:8px 10px 0}.nav button{border:0;background:transparent;color:#9aacc0;font-size:14px;font-weight:850;min-height:49px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:7px;justify-content:center;border-radius:7px 7px 0 0;white-space:nowrap}.nav button:hover{color:#f7fffa;background:#ffffff09}.nav button.active{color:#f4fff9;border-bottom-color:var(--a);background:#7ef2ac0a}.settings{padding:25px 25px 30px;min-height:565px}.tab{display:none;animation:appear .2s ease}.tab.active{display:block}@keyframes appear{from{opacity:.35;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}.rowhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:10px}.rowhead h2{font-size:23px;letter-spacing:-.7px;margin:0}.counter{color:#a6b8cc;border:1px solid #324761;border-radius:10px;padding:4px 9px;font-size:12px}.field{margin-bottom:22px}.field:last-child{margin-bottom:0}.field label,.field .fieldlabel{font-weight:850;display:block;color:#e7f0fd;font-size:13px;margin-bottom:9px}.field input[type=text]{background:#0c182a;border:1px solid #324965;border-radius:11px;color:white;width:100%;padding:13px 14px;min-height:47px;outline:0}.field input[type=text]:focus{border-color:var(--a);box-shadow:0 0 0 3px #72e3aa21}.palette{display:flex;flex-wrap:wrap;gap:9px}.color-choice{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#0e1b2d;border:1px solid #354b65;border-radius:12px;font-size:12px;font-weight:750;color:#c6d4e2;min-height:43px}.color-choice[aria-pressed=true],.tile[aria-pressed=true],.biome[aria-pressed=true]{border-color:#9ef7be;background:#4aa87524;box-shadow:0 0 0 1px #9ef7be52 inset;color:#fff}.swatch{width:21px;height:21px;border-radius:6px;border:2px solid #ffffff23;box-shadow:inset 0 1px 5px #ffffff30}.tile-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.tile{background:#0b192b;border:1px solid #314860;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:78px;gap:6px;padding:8px 3px;color:#cddced;font-weight:800;font-size:11px}.tile:hover,.biome:hover,.color-choice:hover{border-color:#79cdad}.tile .tileicon{font-size:27px;line-height:1.1;filter:drop-shadow(0 4px 3px #0006)}.biomes{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.biome{border:1px solid #314960;border-radius:13px;overflow:hidden;background:#0d1c30;color:#c9d7e5;padding:0 0 10px;font-size:11px;font-weight:800}.biome-illustration{width:100%;height:76px;display:block;margin-bottom:8px;image-rendering:pixelated;image-rendering:crisp-edges;background:#6cc6fa}
+.smalltitle{font-size:11px;font-weight:900;letter-spacing:.5px;color:#92aac0;text-transform:uppercase;margin:0 0 13px}.option-line{display:flex;justify-content:space-between;align-items:center;gap:12px}.number{color:#b5f9ce;font-size:16px;font-weight:900}.range{width:100%;height:7px;appearance:none;background:#314964;border-radius:20px;outline:0;margin:14px 0 4px;accent-color:var(--a)}.range::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:5px;background:#b2f9ce;border:3px solid #3a9872;box-shadow:0 2px 10px #10221e;cursor:pointer}.range::-moz-range-thumb{width:14px;height:14px;border-radius:5px;background:#b2f9ce;border:3px solid #3a9872;cursor:pointer}.range-ends{display:flex;justify-content:space-between;color:#8fa4bb;font-size:11px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:9px 13px;border-radius:10px;color:#c4d2df;background:#0c1a2d;border:1px solid #334961;font-weight:850;font-size:12px}.chip[aria-pressed=true]{color:#fff;background:#3a82692c;border-color:#83e6aa}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{display:flex;gap:10px;align-items:center;padding:12px 11px;background:#0e1b2d;border:1px solid #314960;border-radius:11px;font-size:12px;font-weight:750;color:#cad9e7;cursor:pointer}.check input{accent-color:#75dc9d;width:17px;height:17px}.hint{color:#879db3;font-size:12px;margin-top:11px}.right-col{display:flex;flex-direction:column;gap:17px}.preview-wrap{padding:16px}.paneltitle{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 2px 12px;font-weight:900;font-size:17px}.live{color:#8ef4b3;font-size:10px;font-weight:950;letter-spacing:1.2px}.live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#8ef4b3;box-shadow:0 0 9px #8ef4b3;margin-right:8px;vertical-align:middle}.stage{overflow:hidden;border-radius:13px;border:1px solid #3a4e63;background:#142a42;position:relative;aspect-ratio:16/9}.stage canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.stage-hint{color:#9badc0;font-size:11px;text-align:center;margin-top:12px}.prompt-wrap{padding:16px}.prompt-wrap textarea{width:100%;min-height:220px;max-height:380px;resize:vertical;border-radius:12px;background:#0a1729;color:#d4e9ff;border:1px solid #344b63;padding:15px 16px;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;outline:0}.prompt-wrap textarea:focus{border-color:#8addb0}.prompt-meta{font-size:11px;color:#8ba2b7;font-weight:500}.copy{margin-top:9px;width:100%;border:0;min-height:47px;border-radius:12px;background:linear-gradient(95deg,#7beaab,#f4d67c);color:#102527;font-weight:950;box-shadow:0 9px 25px #65e3a021;transition:transform .15s,filter .15s}.copy:hover{transform:translateY(-1px);filter:brightness(1.06)}.copy:active{transform:translateY(1px)}.foot{padding:25px 0 34px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:#768fa5;font-size:11px}.muted{color:#8ba1b4}.sep{border:0;border-top:1px solid #2a3e52;margin:22px 0}.skin-row{display:flex;align-items:center;gap:16px;background:#102337;border:1px solid #304b60;border-radius:14px;padding:12px;margin-top:2px}.skin-preview{width:68px;height:84px;flex:none;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#3a6b6b55,transparent);image-rendering:pixelated}.skin-preview svg{width:54px;height:78px;shape-rendering:crispEdges}.skin-text{font-size:12px;color:#9db4c5}.skin-text b{font-size:14px;color:#f1fbff;display:block;margin-bottom:4px}.footbar{margin-top:16px;display:flex;gap:10px;justify-content:space-between}.footbar button{border:1px solid #36506b;color:#d8e7f4;border-radius:10px;background:#233750;padding:8px 12px;font-size:12px;font-weight:800}.footbar button.primary{color:#0b251a;background:#a1ecb7;border-color:#b6f3c7}.footbar button:hover{filter:brightness(1.12)}@media(max-width:1080px){.wrap{width:min(1200px,calc(100% - 36px))}.settings{padding:20px}.biomes,.tile-grid{grid-template-columns:repeat(3,1fr)}.biome-illustration{height:64px}}@media(max-width:760px){.wrap{width:min(660px,calc(100% - 24px))}.topbar{height:72px}.top-note{display:none}.hero-head{padding:16px 0 21px}.hero-head h1{letter-spacing:-2px}.layout{grid-template-columns:1fr;gap:16px}.settings{min-height:0;padding:21px 16px 23px}.nav button{font-size:12px;gap:4px;min-height:48px}.right-col{gap:15px}.preview-wrap,.prompt-wrap{padding:13px}.stage-hint{font-size:10px}.prompt-wrap textarea{min-height:230px}.foot{padding-top:19px}}@media(max-width:390px){.nav button{font-size:11px}.nav button .emoji{display:none}.biomes,.tile-grid{gap:6px}.tile{font-size:10px}.color-choice{padding:7px 8px;font-size:11px}.topbar .reset{font-size:12px;padding:8px 10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">▣</div> FLY<span>LAB</span> <span style="color:#a2d9b1;font-size:12px;letter-spacing:1px;margin-left:3px">BLOCKS</span></div>
+    <div style="display:flex;align-items:center;gap:16px"><div class="top-note">КОНСТРУКТОР ПРОМПТОВ · V2</div><button class="reset" id="reset">↺ Сбросить</button></div>
+  </header>
+  <section class="hero-head">
+    <div class="eyebrow"><i></i> СОЗДАЙ СВОЁ ПРИКЛЮЧЕНИЕ</div>
+    <h1>Мир из блоков.<br><span class="gradient">Игра по твоим правилам.</span></h1>
+    <p class="subhead">Выбирай детали → смотри превью → копируй промпт для CodePen.</p>
+  </section>
+  <main class="layout">
+    <section class="panel" aria-label="Настройки игры">
+      <nav class="nav" role="tablist" aria-label="Разделы настроек">
+        <button type="button" class="active" role="tab" aria-selected="true" data-tab="hero"><span class="emoji">🧍</span> Герой</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="world"><span class="emoji">🌲</span> Мир</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="loot"><span class="emoji">💎</span> Ресурсы</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="enemies"><span class="emoji">👾</span> Враги</button>
+      </nav>
+      <div class="settings">
+        <div class="tab active" id="tab-hero" role="tabpanel">
+          <div class="rowhead"><h2>Создай героя</h2><span class="counter">01 / 04</span></div>
+          <div class="field"><label for="title">Название игры</label><input id="title" type="text" maxlength="55" value="Minecraft Adventure" placeholder="Название игры"></div>
+          <div class="field"><div class="fieldlabel">Цвет футболки</div><div id="shirt" class="palette" aria-label="Цвет футболки"></div></div>
+          <div class="field"><div class="fieldlabel">Цвет волос</div><div id="hair" class="palette" aria-label="Цвет волос"></div></div>
+          <div class="skin-row"><div class="skin-preview"><svg viewBox="0 0 60 88" aria-label="Скин персонажа" role="img"><rect x="17" y="2" width="26" height="11" id="hair-skin" fill="#75513a"/><rect x="13" y="11" width="34" height="28" fill="#e5ad80"/><rect x="18" y="22" width="6" height="5" fill="#fdfefc"/><rect x="36" y="22" width="6" height="5" fill="#fdfefc"/><rect x="21" y="22" width="3" height="5" fill="#292c35"/><rect x="36" y="22" width="3" height="5" fill="#292c35"/><rect x="25" y="33" width="10" height="2" fill="#ab6a5d"/><rect x="11" y="39" width="38" height="30" id="shirt-skin" fill="#438ded"/><rect x="2" y="42" width="9" height="26" fill="#d69d76"/><rect x="49" y="42" width="9" height="26" fill="#d69d76"/><rect x="14" y="69" width="14" height="18" fill="#4f5579"/><rect x="32" y="69" width="14" height="18" fill="#4f5579"/></svg></div><div class="skin-text"><b>Твой кубический персонаж</b>В игре — вид от первого лица. Здесь — внешний вид героя.</div></div>
+        </div>
+        <div class="tab" id="tab-world" role="tabpanel" hidden>
+          <div class="rowhead"><h2>Выбери мир</h2><span class="counter">02 / 04</span></div>
+          <div class="field"><div class="fieldlabel">Биом</div><div class="biomes" id="biome"></div></div>
+          <div class="field"><div class="option-line"><label for="mapSize" style="margin:0">Размер карты</label><span class="number" id="mapSizeValue">16 × 16</span></div><input class="range" id="mapSize" type="range" min="12" max="24" step="4" value="16"><div class="range-ends"><span>Компактная</span><span>Большая</span></div></div>
+          <div class="field"><div class="fieldlabel">Погода</div><div class="chips" id="weather"></div></div>
+          <div class="field"><div class="fieldlabel">Детали окружения</div><div class="checks"><label class="check"><input id="clouds" type="checkbox" checked> Движущиеся облака</label><label class="check"><input id="particles" type="checkbox" checked> Атмосферные частицы</label><label class="check"><input id="glints" type="checkbox" checked> Пиксельные блики</label></div></div>
+          <p class="hint">На карте всегда есть земля, трава, камень, деревья и вода.</p>
+        </div>
+        <div class="tab" id="tab-loot" role="tabpanel" hidden>
+          <div class="rowhead"><h2>Собирай ресурсы</h2><span class="counter">03 / 04</span></div>
+          <div class="field"><div class="fieldlabel">Что ищем?</div><div class="tile-grid" id="resource"></div></div>
+          <div class="field"><div class="option-line"><label for="resourceCount" style="margin:0">Количество ресурсов</label><span class="number" id="resourceCountValue">10 шт.</span></div><input class="range" id="resourceCount" type="range" min="5" max="25" step="1" value="10"><div class="range-ends"><span>5</span><span>25</span></div></div>
+          <div class="field"><div class="fieldlabel">Эффект сбора</div><div class="chips" id="pickup"></div></div>
+          <div class="skin-row"><div style="font-size:38px;line-height:1">🏆</div><div class="skin-text"><b>Цель: собрать всё</b>Подойди к ресурсу и нажми пробел. Собери все предметы, чтобы победить.</div></div>
+        </div>
+        <div class="tab" id="tab-enemies" role="tabpanel" hidden>
+          <div class="rowhead"><h2>Добавь врагов</h2><span class="counter">04 / 04</span></div>
+          <div class="field"><div class="fieldlabel">Тип врагов</div><div class="tile-grid" id="enemy" style="grid-template-columns:repeat(4,1fr)"></div></div>
+          <div class="field"><div class="option-line"><label for="enemyCount" style="margin:0">Количество врагов</label><span class="number" id="enemyCountValue">3 шт.</span></div><input class="range" id="enemyCount" type="range" min="1" max="8" step="1" value="3"><div class="range-ends"><span>1</span><span>8</span></div></div>
+          <div class="field"><div class="option-line"><label for="health" style="margin:0">Здоровье игрока</label><span class="number" id="healthValue">5 ❤️</span></div><input class="range" id="health" type="range" min="2" max="10" value="5"><div class="range-ends"><span>2</span><span>10</span></div></div>
+          <div class="field"><div class="fieldlabel">Скорость врагов</div><div class="chips" id="enemySpeed"></div></div>
+          <p class="hint">При столкновении герой теряет 1 здоровье. При 0 — экран «Игра окончена».</p>
+        </div>
+        <div class="footbar"><button type="button" id="prevTab">← Назад</button><button type="button" class="primary" id="nextTab">Далее →</button></div>
+      </div>
+    </section>
+    <aside class="right-col">
+      <section class="panel preview-wrap"><div class="paneltitle">Превью мира <span class="live">LIVE PREVIEW</span></div><div class="stage"><canvas id="preview" width="960" height="540" aria-label="Анимированный предварительный вид игрового мира"></canvas></div><div class="stage-hint">◈ Превью меняется: биом, погода, облака, частицы и блики</div></section>
+      <section class="panel prompt-wrap"><div class="paneltitle">Готовый промпт <span class="prompt-meta" id="promptLength">0 знаков</span></div><textarea id="prompt" aria-label="Готовый промпт" spellcheck="false" readonly></textarea><button type="button" id="copy" class="copy">📋 Скопировать промпт</button></section>
+    </aside>
+  </main>
+  <footer class="foot"><span>FLYLAB BLOCKS · Без библиотек и регистрации</span><span>Промпт → HTML-код → CodePen</span></footer>
+</div>
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id);
+const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Лес',mapSize:16,weather:'Ясно',clouds:true,particles:true,glints:true,resource:'Алмазы',resourceCount:10,pickup:'Искры',enemy:'Зомби',enemyCount:3,health:5,enemySpeed:'Умеренно'};
+let state={...defaults};
+const options={
+ shirt:[['Синий','#3789ed'],['Зелёный','#4acc7b'],['Красный','#ef5f64'],['Жёлтый','#f6cb55'],['Фиолетовый','#a984ff']],
+ hair:[['Коричневый','#7c5136'],['Чёрный','#25252e'],['Светлый','#dfbc7d'],['Рыжий','#c76b34']],
+ biome:[['Лес','🌳'],['Горы','⛰️'],['Пустыня','🌵'],['Снег','❄️'],['Ночь','🌙']],
+ resource:[['Алмазы','💎'],['Золото','🪙'],['Яблоки','🍎'],['Монеты','💰'],['Кристаллы','🔮']],
+ enemy:[['Зомби','🧟'],['Скелеты','💀'],['Пауки','🕷️'],['Монстры','👾']],
+ weather:[['Ясно'],['Облачно'],['Дождь'],['Снег']],
+ pickup:[['Искры'],['Вспышка'],['Звёздочки']],
+ enemySpeed:[['Медленно'],['Умеренно'],['Быстро']]
+};
+const shirtHex={'Синий':'#3789ed','Зелёный':'#4acc7b','Красный':'#ef5f64','Жёлтый':'#f6cb55','Фиолетовый':'#a984ff'};
+const hairHex={'Коричневый':'#7c5136','Чёрный':'#25252e','Светлый':'#dfbc7d','Рыжий':'#c76b34'};
+const tabNames=['hero','world','loot','enemies'];let tabIndex=0;
+function group(key,type){
+ const root=$(key);root.innerHTML='';
+ for(const [value,symbol] of options[key]){
+  const b=document.createElement('button');b.type='button';b.dataset.value=value;b.dataset.key=key;b.setAttribute('aria-pressed',String(state[key]===value));
+  if(type==='color'){b.className='color-choice';const sw=document.createElement('span');sw.className='swatch';sw.style.background=symbol;b.append(sw,document.createTextNode(value));}
+  else if(type==='biome'){b.className='biome';const art=document.createElement('canvas');art.className='biome-illustration';art.width=144;art.height=76;drawBiomeThumb(art,value);b.append(art,document.createTextNode(value));}
+  else if(type==='tile'){b.className='tile';const icon=document.createElement('span');icon.className='tileicon';icon.textContent=symbol;b.append(icon,document.createTextNode(value));}
+  else{b.className='chip';b.textContent=value;}
+  b.addEventListener('click',()=>{state[key]=value;refresh();});root.append(b);
+ }
+}
+function renderGroups(){group('shirt','color');group('hair','color');group('biome','biome');group('resource','tile');group('enemy','tile');group('weather','chip');group('pickup','chip');group('enemySpeed','chip');}
+function showTab(index){tabIndex=Math.max(0,Math.min(tabNames.length-1,index));for(const [i,name] of tabNames.entries()){
+ const active=i===tabIndex;const t=$('tab-'+name);t.classList.toggle('active',active);t.hidden=!active;
+ const btn=document.querySelector(`.nav [data-tab="${name}"]`);btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active));}
+ $('prevTab').disabled=tabIndex===0;$('nextTab').textContent=tabIndex===tabNames.length-1?'К промпту ↓':'Далее →';}
+for(const [index,name] of tabNames.entries())document.querySelector(`[data-tab="${name}"]`).addEventListener('click',()=>showTab(index));
+$('prevTab').addEventListener('click',()=>showTab(tabIndex-1));
+$('nextTab').addEventListener('click',()=>{if(tabIndex===tabNames.length-1){$('prompt').focus();$('prompt').scrollIntoView({block:'nearest',behavior:'smooth'});}else showTab(tabIndex+1);});
+$('title').addEventListener('input',e=>{state.title=e.target.value;refresh(false);});
+for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);refresh(false);});
+for(const key of ['clouds','particles','glints'])$(key).addEventListener('change',e=>{state[key]=e.target.checked;refresh(false);});
+$('reset').addEventListener('click',()=>{state={...defaults};$('title').value=state.title;for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).value=state[key];for(const key of ['clouds','particles','glints'])$(key).checked=state[key];refresh();showTab(0);});
+const biomes={
+ 'Лес':'дневное небо и зелёный лес', 'Горы':'горный пейзаж', 'Пустыня':'пустыня', 'Снег':'снежный мир', 'Ночь':'ночной мир со звёздами'
+};
+const enemies={'Зомби':'зомби','Скелеты':'скелеты','Пауки':'пауки','Монстры':'маленькие монстры'};
+const resourceWords={'Алмазы':'алмазы','Золото':'золото','Яблоки':'яблоки','Монеты':'монеты','Кристаллы':'кристаллы'};
+const speedWords={'Медленно':'медленно и предсказуемо','Умеренно':'с умеренной скоростью','Быстро':'быстро, но с возможностью увернуться'};
+const pickupWords={'Искры':'маленькие искры','Вспышка':'короткая световая вспышка','Звёздочки':'разлетающиеся звёздочки'};
+const weatherWords={
+ 'Ясно':'ясно: светлое небо, квадратное солнце и яркое освещение',
+ 'Облачно':'облачно: плотные кубические облака, приглушённое освещение и сероватое небо',
+ 'Дождь':'дождь: анимированные вертикальные пиксельные капли, тёмные облака и квадратные рябинки на воде',
+ 'Снег':'снегопад: падающие квадратные снежинки, холодное освещение и белые пиксельные следы на земле'
+};
+function makePrompt(){
+const title=state.title.trim()||defaults.title;
+return `Ты — разработчик браузерных игр. Создай полноценную красивую мини-игру в стиле Minecraft для CodePen.\n\nИГРА: «${title}». Яркая пиксельная 3D-подобная графика ТОЛЬКО из кубических блоков и прямоугольников: горы строятся ступенями из каменных кубов, пустыня — из песчаных блоков с квадратными кактусами, снежный биом — из белых кубов и прямоугольных заснеженных елей. Никаких треугольных гор, сглаженных склонов, округлых холмов и рисованных треугольных дюн. Вид ОТ ПЕРВОГО ЛИЦА: видны руки героя и мир перед ним. В меню покажи кубическую модель героя. Футболка: ${state.shirt.toLowerCase()}; волосы: ${state.hair.toLowerCase()}. Анимируй ходьбу и движение руки.\n\nМИР: ${biomes[state.biome]}; карта ${state.mapSize}×${state.mapSize} блоков, всё игровое поле умещается в canvas, камера следует за игроком и не выходит за границы. Обязательные блоки: земля, трава, камень, деревья, вода. Квадратные деревья и камни, объёмные грани блоков. Погода: ${weatherWords[state.weather]}. Изменение погоды ОБЯЗАТЕЛЬНО заметно в анимации сцены. ${state.clouds?'Кубические облака плавно движутся.':'Без движения облаков; если нужны выбранной погоде, оставь только неподвижные облака.'} ${state.particles?'Атмосферные пиксельные частицы отдельно от осадков: мелкая летящая пыль/светящиеся пиксели вокруг блоков.':'Без атмосферных декоративных частиц, но осадки выбранной погоды оставь.'} ${state.glints?'Добавь динамические квадратные световые блики на гранях кубов, воде и ресурсах.':'Не добавляй декоративные блики на блоках или ресурсах.'}\n\nЦЕЛЬ: случайно размести ${state.resourceCount} предметов одного типа — ${resourceWords[state.resource]}. WASD или стрелки — движение, пробел рядом с предметом — сбор. При сборе предмет исчезает, начисляется +1 очко, появляется эффект: ${pickupWords[state.pickup]}. После сбора ВСЕХ предметов останови игру и покажи экран «Победа!» с кнопкой «Победа» для запуска новой игры.\n\nВРАГИ: ${enemies[state.enemy]}; одновременно ${state.enemyCount} шт. Нарисуй кубические мультяшные модели. Они двигаются по карте ${speedWords[state.enemySpeed]}. При столкновении отними 1 здоровье и включи короткую неуязвимость после удара. Начальное здоровье: ${state.health}. При нуле здоровья — экран «Игра окончена», итоговый счёт и кнопка «Играть снова».\n\nЭКРАНЫ: сначала меню «${title}» и кнопка «Начать игру»; затем отсчёт 3–2–1 и старт. Во время игры сверху крупно показывай счёт и здоровье. Управление понятно ребёнку. Для планшета добавь сенсорные кнопки движения и сбора, не мешающие игровому полю.\n\nТЕХНИЧЕСКИ: один адаптивный HTML-фрагмент для вставки прямо в HTML-панель CodePen, с CSS внутри <style> и JavaScript внутри <script>. Никаких внешних библиотек, изображений, файлов и ссылок на ассеты. Графику нарисуй только Canvas/HTML/CSS. Производительность плавная, коллизии и сбор работают без ошибок; весь код не более 1000 строк. Проверь синтаксис и запуск до ответа.\n\nОТВЕТ: выдай ТОЛЬКО сам полный HTML-код от <!DOCTYPE html> до </html>, пригодный для немедленной вставки в CodePen. Не создавай и не прикрепляй файл. Не используй Markdown-блоки, обратные кавычки, вводный текст или пояснения. Никаких вариантов на выбор: используй только перечисленные здесь выбранные настройки.`;
+}
+function refresh(rerender=true){
+ if(rerender)for(const key of Object.keys(options))for(const el of $(key).querySelectorAll('button'))el.setAttribute('aria-pressed',String(el.dataset.value===state[key]));
+ $('shirt-skin').setAttribute('fill',shirtHex[state.shirt]);$('hair-skin').setAttribute('fill',hairHex[state.hair]);
+ $('mapSizeValue').textContent=`${state.mapSize} × ${state.mapSize}`;$('resourceCountValue').textContent=`${state.resourceCount} шт.`;$('enemyCountValue').textContent=`${state.enemyCount} шт.`;$('healthValue').textContent=`${state.health} ❤️`;
+ const text=makePrompt();$('prompt').value=text;$('promptLength').textContent=`${text.length.toLocaleString('ru-RU')} знаков`;
+}
+$('copy').addEventListener('click',async()=>{
+ const el=$('copy'),value=$('prompt').value,original='📋 Скопировать промпт';
+ let ok=false;try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(value);ok=true;}}catch(e){}
+ if(!ok){try{$('prompt').focus();$('prompt').select();ok=document.execCommand('copy');}catch(e){}}
+ if(ok){el.textContent='✓ Промпт скопирован';setTimeout(()=>{el.textContent=original},2000);}else{el.textContent='Выдели текст и скопируй Ctrl+C';$('prompt').focus();$('prompt').select();setTimeout(()=>{el.textContent=original},3000);}
+});
+// Блочное превью: горы, снег, песок, растения и частицы состоят из прямоугольных пикселей.
+const cv=$('preview'),ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+let tick=0;
+function rect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.ceil(w),Math.ceil(h));}
+function poly(points,color){ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);ctx.closePath();ctx.fill();}
+function cube(x,y,w,h,top,right,front,d=16){rect(x,y,w,h,front);poly([[x,y],[x+d,y-d],[x+w+d,y-d],[x+w,y]],top);poly([[x+w,y],[x+w+d,y-d],[x+w+d,y+h-d],[x+w,y+h]],right);}
+function blockCloud(x,y,s,col='#fff',shade='#cfe5ee'){
+ rect(x,y,92*s,20*s,col);rect(x+13*s,y-17*s,45*s,19*s,col);
+ rect(x+49*s,y-29*s,25*s,31*s,col);rect(x+7*s,y+18*s,62*s,9*s,shade);
+}
+function spruce(x,y,s,snow=false){
+ const k=18*s;rect(x+34*s,y+51*s,k,76*s,'#79563d');
+ for(let i=0;i<4;i++){
+  const w=(80-i*13)*s, left=x+(99-(80-i*13))*s/2, yy=y+(54-i*17)*s;
+  rect(left,yy,w,24*s,snow?'#376a73':'#2d7252');
+  rect(left+7*s,yy+4*s,w-14*s,5*s,snow?'#f4fcff':'#5aaf75');
+ }
+}
+function tree(x,y,s,leaf,trunk){
+ rect(x+25*s,y+41*s,17*s,75*s,trunk);rect(x-4*s,y+23*s,77*s,42*s,leaf);
+ rect(x+11*s,y+3*s,47*s,29*s,leaf);rect(x+23*s,y-11*s,22*s,16*s,leaf);
+ if(state.glints){rect(x+11*s,y+31*s,7*s,6*s,'#d0ffc188');rect(x+42*s,y+9*s,5*s,7*s,'#d0ffc188');}
+}
+function cactus(x,y,s){
+ rect(x+24*s,y+9*s,21*s,93*s,'#347e50');rect(x+19*s,y+7*s,21*s,10*s,'#62b47a');
+ rect(x+4*s,y+42*s,22*s,15*s,'#388c5b');rect(x+4*s,y+33*s,13*s,17*s,'#388c5b');
+ rect(x+44*s,y+62*s,20*s,13*s,'#388c5b');rect(x+56*s,y+42*s,13*s,23*s,'#388c5b');
+ rect(x+31*s,y+23*s,5*s,50*s,'#79cc8a');
+}
+// Горные силуэты строятся строго рядами прямоугольных блоков (без единой треугольной вершины).
+function mountain(cx,base,u,rows,snow=false,desert=false){
+ for(let i=0;i<rows;i++){
+  const units=3+Math.floor((rows-1-i)*1.35), width=units*u;
+  const x=Math.round(cx-width/2),y=base-(i+1)*u;
+  const color=desert?(i%3===0?'#c58a5e':'#d79b67'):(snow?(i>rows-4?'#f6fcff':i%2?'#a8bfcb':'#c9d7df'):i>rows-3?'#dce5e7':i%2?'#657988':'#84949c');
+  rect(x,y,width,u,color);
+  // Квадратные швы, вкрапления и снежная шапка.
+  for(let j=0;j<units;j++){
+   if((j+i)%3===0)rect(x+j*u+u/3,y+u*.42,Math.max(3,u/5),Math.max(3,u/6),desert?'#f7d29455':snow?'#fff9':'#233f5266');
+   if(j>0)rect(x+j*u,y,2,u,'#21374825');
+  }
+  if(snow&&i>rows-4)rect(x,y,width,Math.max(4,u*.2),'#ffffff');
+ }
+}
+function dunes(){
+ mountain(180,354,21,5,false,true);mountain(590,355,27,6,false,true);
+ rect(0,333,960,21,'#e7bc75');
+ for(let i=0;i<18;i++)rect((i*79)%960,340+(i%3)*6,28,4,'#f9d69e88');
+}
+function thumbsBlocks(c,b){
+ const r=(x,y,w,h,col)=>{c.fillStyle=col;c.fillRect(x,y,w,h)};
+ const bg={'Лес':'#79c8f5','Горы':'#8bb8da','Пустыня':'#f6bc75','Снег':'#b0d6ee','Ночь':'#263661'};
+ r(0,0,144,76,bg[b]);r(107,11,14,14,b==='Ночь'?'#e5e5c6':'#fff1b0');
+ if(b==='Горы'||b==='Снег'){
+  const color=b==='Снег'?'#ccdde7':'#7c8d9b';
+  for(const [cx,n] of [[36,5],[92,7],[132,4]])for(let k=0;k<n;k++){
+   const w=12+(n-k)*10,y=62-(k+1)*7;
+   r(cx-w/2,y,w,7,k>=n-2?'#f7fdff':color);
+  }
+ } else if(b==='Пустыня'){
+  for(let k=0;k<3;k++)r(0,60+k*5,144-k*17,6,k%2?'#ddb169':'#f7d183');
+  r(45,29,8,36,'#3f9866');r(36,44,12,6,'#3f9866');r(36,37,5,12,'#3f9866');r(52,39,13,6,'#3f9866');r(60,34,5,12,'#3f9866');
+ }else{
+  r(0,61,144,15,b==='Ночь'?'#39604c':'#5cae61');
+  for(const x of [21,80]){
+   r(x+9,40,7,24,'#76553a');r(x,31,30,24,b==='Ночь'?'#2f6750':'#3c9557');r(x+5,22,20,15,b==='Ночь'?'#2f6750':'#3c9557');
+  }
+  if(b==='Ночь')for(let i=0;i<11;i++)r((i*39+9)%144,(i*17)%31,2,2,'#ffedb6');
+ }
+ r(0,67,144,9,b==='Снег'?'#f9ffff':b==='Горы'?'#687f77':b==='Пустыня'?'#d3a361':b==='Ночь'?'#364c41':'#826747');
+}
+function drawBiomeThumb(canvas,b){const c=canvas.getContext('2d');c.imageSmoothingEnabled=false;thumbsBlocks(c,b);}
+function sparkle(x,y,s=1,color='#ffffff'){rect(x-3*s,y-3*s,6*s,6*s,color);rect(x-9*s,y,5*s,3*s,color);rect(x+6*s,y,5*s,3*s,color);rect(x,y-9*s,3*s,5*s,color);rect(x,y+6*s,3*s,5*s,color);}
+function resource(x,y,s,t){
+ ctx.save();ctx.translate(x,y+Math.sin(t/18+x)*5);const name=state.resource;
+ if(name==='Яблоки'){
+  rect(-9*s,-15*s,18*s,21*s,'#e64f42');rect(-5*s,-20*s,6*s,7*s,'#79542f');rect(3*s,-21*s,10*s,5*s,'#64b358');
+  if(state.glints)rect(-6*s,-11*s,5*s,7*s,'#ffbd97');
+ }else if(name==='Монеты'||name==='Золото'){
+  rect(-12*s,-12*s,23*s,22*s,'#a46f30');rect(-7*s,-17*s,20*s,24*s,name==='Золото'?'#ffd943':'#eec35c');
+  rect(-2*s,-11*s,5*s,13*s,'#fff2ad');if(state.glints)sparkle(12*s,-12*s,.6,'#fff5ca');
+ }else{
+  const col=name==='Алмазы'?'#74edf5':'#cdb0ff';
+  rect(-9*s,-20*s,18*s,27*s,col);rect(-14*s,-14*s,28*s,16*s,col);
+  rect(-4*s,-16*s,6*s,18*s,name==='Алмазы'?'#dcffff':'#f2e6ff');
+  rect(8*s,-10*s,6*s,12*s,name==='Алмазы'?'#389ead':'#9074d3');
+  if(state.glints)sparkle(-12*s,-22*s,.7,'#fff');
+ }
+ ctx.restore();
+}
+function monster(x,y,s,t){const type=state.enemy;ctx.save();ctx.translate(x,y+Math.sin(t/15)*3);
+ if(type==='Пауки'){
+  rect(-23*s,-16*s,46*s,27*s,'#362f47');for(const sign of [-1,1])for(let i=0;i<3;i++)rect(sign*(24+i*4)*s,(-12+i*9)*s,13*s,5*s,'#292438');
+  rect(-12*s,-11*s,8*s,7*s,'#ed627f');rect(5*s,-11*s,8*s,7*s,'#ed627f');
+ }else{
+  const skin=type==='Зомби'?'#75aa69':type==='Скелеты'?'#e5e6d9':'#bc86e6';
+  const shirt=type==='Зомби'?'#516eaa':type==='Скелеты'?'#9aa7af':'#e56ea9';
+  rect(-16*s,-27*s,32*s,30*s,skin);rect(-17*s,3*s,34*s,25*s,shirt);
+  rect(-22*s,5*s,6*s,27*s,skin);rect(16*s,5*s,6*s,27*s,skin);
+  rect(-13*s,28*s,10*s,18*s,'#42516a');rect(3*s,28*s,10*s,18*s,'#42516a');
+  rect(-9*s,-17*s,5*s,6*s,'#272b36');rect(5*s,-17*s,5*s,6*s,'#272b36');
+  if(type==='Скелеты')rect(-8*s,-4*s,16*s,5*s,'#5e5f5f');
+ }
+ ctx.restore();
+}
+function blockTerrain(b,colors){
+ const {grass,side}=colors;
+ rect(0,349,W,H-349,side);
+ for(let i=0;i<15;i++){
+  const x=i*70-38,y=347+((i*17)%28);
+  rect(x,y,68,12,grass);rect(x,y+12,68,25,side);
+  if(i%2===0)rect(x+15,y+19,10,5,'#172c3540');
+ }
+ // Прямоугольная дорога, сложенная из ступенчатых слоёв кубических плит.
+ for(let i=0;i<6;i++){
+  const depth=i/5,y=354+i*i*6,width=82+i*84;
+  rect(W/2-width/2,y,width,14+i*2,b==='Пустыня'?'#efd08b':b==='Снег'?'#e1edf4':'#8b9475');
+  for(let j=0;j<Math.min(10,2+i*2);j++)rect(W/2-width/2+9+j*43,y+5,3,5,'#00000016');
+ }
+ cube(30,410,152,112,grass,'#476f53',side,18);
+ cube(748,411,164,135,grass,'#3a644d',side,19);
+}
+function drawSky(b){
+ const weather=state.weather,night=b==='Ночь',cloudy=weather==='Облачно'||weather==='Дождь';
+ let top,bot;
+ if(night){top=cloudy?'#151d35':'#141d46';bot=cloudy?'#363e60':'#525479';}
+ else if(cloudy){top=weather==='Дождь'?'#526b81':'#8097a7';bot=weather==='Дождь'?'#a4bcc6':'#c9d9da';}
+ else if(b==='Пустыня'){top='#eda96a';bot='#ffe2a0';}
+ else if(b==='Снег'){top='#8bbddd';bot='#e7f7ff';}
+ else{top='#73b9e8';bot='#ddf5ff';}
+ const g=ctx.createLinearGradient(0,0,0,350);g.addColorStop(0,top);g.addColorStop(1,bot);
+ rect(0,0,W,H,g);
+ if(night){for(let i=0;i<52;i++){let x=(i*137+19)%W,y=(i*47+18)%262;rect(x,y,4,4,`rgba(255,244,201,${.32+.53*(.5+.5*Math.sin(tick/24+i))})`);}rect(756,54,42,42,'#f1e8c5');}
+ else if(!cloudy){rect(761,52,56,56,b==='Пустыня'?'#ffdf88':'#fff6bf');rect(770,61,37,37,'#fff9d8');}
+ // Непогода не зависит от галочки декоративных облаков: облачность обязательна для погоды.
+ if(cloudy){ctx.globalAlpha=weather==='Дождь'?.93:.77;
+  for(let i=0;i<6;i++){const move=state.clouds?(tick*.34):0;const x=((i*211-100+move)%(W+320)+W+320)%(W+320)-120;blockCloud(x,48+(i%2)*38,1.45,'#657c8e','#566b7b');}
+  ctx.globalAlpha=1;
+ }else if(state.clouds){
+  const move=tick*.8;
+  for(let i=0;i<4;i++){const x=((i*311+105+move)%(W+270))-150;blockCloud(x,75+(i%2)*54,.78,night?'#8792b9':'#f7fcff',night?'#67719d':'#e0edf1');}
+ }
+}
+function drawBackground(b){
+ if(b==='Горы'||b==='Снег'){
+  mountain(150,350,26,7,b==='Снег');mountain(471,359,23,9,b==='Снег');mountain(809,347,23,8,b==='Снег');
+  if(b==='Снег'){
+   spruce(80,241,.9,true);spruce(733,232,1.05,true);
+   rect(0,344,W,18,'#f9ffff');
+  }else{rect(0,339,W,15,'#6e9175');rect(18,316,24,21,'#537e63');rect(50,325,35,14,'#4b8162');}
+ }else if(b==='Пустыня'){
+  dunes();cactus(110,244,.65);cactus(741,232,.84);
+ }else{
+  for(let i=0;i<12;i++)tree(i*93-60,295+(i%3)*11,.55+(i%3)*.08,b==='Ночь'?'#2c6550':'#3e985c','#72553d');
+ }
+}
+function drawDecor(b){
+ const snow=b==='Снег',desert=b==='Пустыня';
+ if(snow){
+  rect(0,345,W,10,'#f9ffff');spruce(-35,188,1.7,true);spruce(750,171,1.8,true);
+ }else if(desert){cactus(11,251,1.45);cactus(785,258,1.5);}
+ else if(b==='Горы'){
+  mountain(-30,390,20,5,false);mountain(915,409,22,6,false);
+  rect(17,292,48,26,'#728b98');rect(12,282,30,15,'#c3d6d6');
+ }else{tree(-26,207,1.55,b==='Ночь'?'#2d6b55':'#2d8650','#775740');tree(783,183,1.55,b==='Ночь'?'#2b6654':'#328855','#78563d');}
+ if(snow){cube(262,373,85,65,'#f7fdff','#aabdc6','#dbe7ed',14);}else if(desert){cube(260,373,85,65,'#f3d496','#a47d4a','#e2b56d',14);}else{cube(266,371,85,65,'#b0b7bd','#667784','#808c94',14);}
+ // Вода намеренно собрана из квадратных плит без треугольного контура.
+ if(b!=='Пустыня'){
+  rect(554,430,182,18,'#306f93');rect(538,448,223,22,'#398fbd');rect(524,470,249,24,'#3484b4');
+  for(let i=0;i<8;i++)rect(551+(i*31)%172,444+(i%3)*14,23,4,state.glints?'#b5f4ff':'#5dbee0');
+ }
+}
+function drawAtmosphericParticles(b){
+ if(!state.particles)return;
+ const palette=b==='Пустыня'?'#ffe3a9':b==='Снег'?'#f3ffff':b==='Ночь'?'#c6f5df':'#e6ffd3';
+ // Отдельные движущиеся частицы: видно даже при ясной погоде.
+ for(let i=0;i<48;i++){
+  const x=((i*223+81+tick*(.32+(i%4)*.08))%(W-80))+40;
+  const y=142+((i*97-tick*(.15+(i%5)*.08)+2000)%305);
+  const s=i%5===0?7:i%3===0?5:3;
+  ctx.globalAlpha=.35+((i%4)*.13);rect(x,y,s,s,palette);
+ }
+ ctx.globalAlpha=1;
+}
+function drawWeather(b){
+ const weather=state.weather;
+ if(weather==='Дождь'){
+  for(let i=0;i<120;i++){
+   const x=(i*193+((i*37)%17))%W,y=(i*83+tick*13)%(H+55)-30;
+   rect(x,y,3,20,'#d9f0ffb6');rect(x+3,y+18,3,6,'#c3e2f480');
+  }
+  for(let i=0;i<15;i++){const x=(i*73+tick*3)%W,y=455+(i%4)*11;rect(x,y,16,3,'#d0eaff8c');}
+ }else if(weather==='Снег'){
+  for(let i=0;i<95;i++){
+   const x=((i*131+Math.sin(tick/16+i)*25+W)%W),y=(i*91+tick*(1.8+(i%4)*.4))%(H+20)-10;
+   rect(x,y,i%4===0?7:5,i%4===0?7:5,'#ffffffde');
+  }
+  for(let i=0;i<18;i++)rect((i*87)%W,336+(i%4)*7,18,4,'#f9ffffa8');
+ }
+}
+function drawGlints(b){
+ if(!state.glints)return;
+ const pul=.65+.35*Math.sin(tick/12);ctx.globalAlpha=pul;
+ sparkle(291,378,1,'#ecfcff');sparkle(617,447,.8,'#d6f8ff');
+ sparkle(111,417,.72,'#feffff');sparkle(830,415,.85,'#faffdf');
+ sparkle(405,329,.65,'#fffae6');sparkle(748,353,.65,'#ffffdf');
+ if(b==='Снег'){sparkle(112,257,.7,'#fff');sparkle(780,253,.9,'#fff');}
+ if(b==='Пустыня'){sparkle(148,350,.7,'#fff1af');sparkle(752,325,.7,'#fff1af');}
+ ctx.globalAlpha=1;
+}
+function drawHud(){
+ rect(20,18,232,46,'#112c398e');rect(20,18,232,3,'#ecfefa5f');
+ ctx.font='bold 27px system-ui';ctx.fillStyle='#fff';ctx.shadowColor='#0009';ctx.shadowBlur=4;
+ ctx.fillText('♥'.repeat(Math.min(5,state.health)),31,51);ctx.shadowBlur=0;
+ const skyBadge={Ясно:'☀ ЯСНО',Облачно:'☁ ОБЛАЧНО',Дождь:'▥ ДОЖДЬ',Снег:'❄ СНЕГ'};
+ ctx.font='bold 15px system-ui';ctx.textAlign='right';ctx.fillStyle='#f8ffff';ctx.fillText(skyBadge[state.weather],W-25,34);ctx.textAlign='left';
+ rect(22,483,272,44,'#112b3bcf');rect(22,483,272,3,'#e2fcff6c');
+ ctx.font='bold 18px system-ui';ctx.fillStyle='#fff';ctx.fillText(resourceWords[state.resource].toUpperCase()+'   0 / '+state.resourceCount,35,512);
+}
+function draw(t){
+ tick=t*.06;const b=state.biome;
+ const side=b==='Пустыня'?'#a87c4b':b==='Снег'?'#a7b9be':b==='Горы'?'#677a76':b==='Ночь'?'#354c43':'#68573f';
+ const grass=b==='Пустыня'?'#efd089':b==='Снег'?'#e8f3f6':b==='Горы'?'#8ca18b':b==='Ночь'?'#3d7757':'#65b963';
+ drawSky(b);drawBackground(b);blockTerrain(b,{grass,side});drawDecor(b);
+ // Атмосферные частицы не влияют на дождь и снег — это независимые настройки.
+ drawAtmosphericParticles(b);
+ const mobX=639+Math.sin(tick/20)*27;
+ monster(mobX,392,.9,tick);resource(473,389,1.15,tick);resource(185,376,.7,tick);
+ // Квадратная рука героя от первого лица.
+ const sway=Math.sin(tick/12)*3;ctx.save();ctx.translate(750,410+sway);ctx.rotate(-.18);
+ rect(10,43,123,92,shirtHex[state.shirt]);rect(0,0,111,64,'#e6af82');rect(0,0,111,13,'#f4c69d');
+ rect(97,43,36,92,'#26547f55');rect(0,55,111,9,'#b98565');
+ if(state.glints){rect(22,12,33,5,'#ffe3bf');rect(19,67,20,6,'#ffffff55');}
+ ctx.restore();
+ drawGlints(b);drawWeather(b);
+ rect(471,249,18,3,'#ffffffdd');rect(479,241,3,19,'#ffffffdd');drawHud();
+ requestAnimationFrame(draw);
+}
+
+renderGroups();showTab(0);refresh();requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
