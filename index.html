@@ -77,7 +77,7 @@
 (() => {
 'use strict';
 const $=id=>document.getElementById(id);
-const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',weather:'Ясно',resource:'Алмазы',resourceCount:6,enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Медленно'};
+const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',weather:'Ясно',resource:'Алмазы',resourceCount:6,enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Умеренно'};
 let state={...defaults};
 const options={
  shirt:[['Синий','#3789ed'],['Зелёный','#4acc7b'],['Красный','#ef5f64'],['Жёлтый','#f6cb55'],['Фиолетовый','#a984ff']],
@@ -118,7 +118,7 @@ const biomes={
 };
 const enemies={'Зомби':'зомби','Скелеты':'скелеты','Пауки':'пауки','Монстры':'маленькие монстры'};
 const resourceWords={'Алмазы':'алмазы','Золото':'золото','Яблоки':'яблоки','Монеты':'монеты','Кристаллы':'кристаллы'};
-const speedWords={'Медленно':'очень медленно, около 27 пикселей в секунду, плавно и предсказуемо','Умеренно':'около 46 пикселей в секунду, без резких ускорений','Быстро':'около 64 пикселей в секунду, с возможностью увернуться'};
+const speedWords={'Медленно':'около 60 пикселей в секунду, спокойно, но без остановок','Умеренно':'около 85 пикселей в секунду, заметно быстрее и плавно','Быстро':'около 120 пикселей в секунду, активно и с возможностью увернуться'};
 const weatherWords={
  'Ясно':'ясно: светлое небо, квадратное солнце и яркое освещение',
  'Облачно':'облачно: плотные кубические облака, приглушённое освещение и сероватое небо',
@@ -329,7 +329,7 @@ function gridRoute(start,goal){
 const patrolCells=[[10,5],[3,4],[11,3],[5,2],[2,3],[12,5],[4,5],[10,1],[15,4],[6,5],[10,7],[15,6]];
 function updateEnemyMovement(dt,t){
  if(!dt)return;
- const speed=state.enemySpeed==='Быстро'?64:state.enemySpeed==='Медленно'?27:46;
+ const speed=state.enemySpeed==='Быстро'?120:state.enemySpeed==='Медленно'?60:85;
  const target={c:Math.max(0,Math.min(15,Math.floor(player.x/TILE))),r:Math.max(1,Math.min(7,Math.floor((player.y+13)/TILE)))};
  for(let i=0;i<state.enemyCount;i++){
   const a=enemyActors[i],at={c:Math.floor(a.x/TILE),r:Math.floor((a.y+13)/TILE)};
