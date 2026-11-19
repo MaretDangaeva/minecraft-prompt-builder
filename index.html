@@ -9,18 +9,20 @@
 :root{color-scheme:dark;--bg:#09111e;--panel:#152338;--panel2:#101d30;--line:#2c4056;--muted:#90a6bb;--text:#f2f8ff;--a:#77edb0;--b:#f6d478;--shadow:0 19px 50px #0209136e}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse 65% 35% at 8% 0%,#153f37 0%,transparent 100%),radial-gradient(ellipse 55% 45% at 95% 0%,#183656 0%,transparent 95%),var(--bg);min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #bbffcf;outline-offset:3px}button:disabled{opacity:.65;cursor:not-allowed}.wrap{width:min(1330px,calc(100% - 60px));margin:auto}.topbar{height:90px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:950;letter-spacing:-1.2px}.brand-mark{width:41px;height:41px;display:grid;place-items:center;background:linear-gradient(135deg,#8ef8bf,#2b9b86);border-radius:12px;box-shadow:0 6px 22px #65f5aa28;font-size:22px;transform:rotate(-6deg)}.brand span{color:var(--a)}.top-note{color:#93aabc;font-size:11px;letter-spacing:2px;font-weight:900}.reset{background:#23384e;border:1px solid #344e67;color:#dbe9f6;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:800}.reset:hover{background:#304d62}.hero-head{padding:18px 0 25px}.eyebrow{color:#7cefaa;text-transform:uppercase;font-weight:900;font-size:11px;letter-spacing:2px}.eyebrow i{display:inline-block;width:7px;height:7px;background:#7cefaa;border-radius:50%;box-shadow:0 0 12px #77edb0;margin-right:9px}.hero-head h1{margin:11px 0 2px;font-size:clamp(36px,5.4vw,69px);letter-spacing:-3.2px;line-height:1.1;font-weight:950}.gradient{background:linear-gradient(110deg,#8af5ba,#b7ffdd 32%,#f6d478 90%);background-clip:text;color:transparent}.subhead{margin:9px 0 0;color:#9fb2c6}.layout{display:grid;grid-template-columns:1fr .94fr;align-items:start;gap:22px}.panel{border:1px solid var(--line);border-radius:23px;background:linear-gradient(140deg,#1b2b41e8,#111c30f7);box-shadow:var(--shadow);overflow:hidden}.nav{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #2d4059;gap:3px;padding:8px 10px 0}.nav button{border:0;background:transparent;color:#9aacc0;font-size:14px;font-weight:850;min-height:49px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:7px;justify-content:center;border-radius:7px 7px 0 0;white-space:nowrap}.nav button:hover{color:#f7fffa;background:#ffffff09}.nav button.active{color:#f4fff9;border-bottom-color:var(--a);background:#7ef2ac0a}.settings{padding:25px 25px 30px;min-height:565px}.tab{display:none;animation:appear .2s ease}.tab.active{display:block}@keyframes appear{from{opacity:.35;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}.rowhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:10px}.rowhead h2{font-size:23px;letter-spacing:-.7px;margin:0}.counter{color:#a6b8cc;border:1px solid #324761;border-radius:10px;padding:4px 9px;font-size:12px}.field{margin-bottom:22px}.field:last-child{margin-bottom:0}.field label,.field .fieldlabel{font-weight:850;display:block;color:#e7f0fd;font-size:13px;margin-bottom:9px}.field input[type=text]{background:#0c182a;border:1px solid #324965;border-radius:11px;color:white;width:100%;padding:13px 14px;min-height:47px;outline:0}.field input[type=text]:focus{border-color:var(--a);box-shadow:0 0 0 3px #72e3aa21}.palette{display:flex;flex-wrap:wrap;gap:9px}.color-choice{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#0e1b2d;border:1px solid #354b65;border-radius:12px;font-size:12px;font-weight:750;color:#c6d4e2;min-height:43px}.color-choice[aria-pressed=true],.tile[aria-pressed=true],.biome[aria-pressed=true]{border-color:#9ef7be;background:#4aa87524;box-shadow:0 0 0 1px #9ef7be52 inset;color:#fff}.swatch{width:21px;height:21px;border-radius:6px;border:2px solid #ffffff23;box-shadow:inset 0 1px 5px #ffffff30}.tile-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.tile{background:#0b192b;border:1px solid #314860;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:78px;gap:6px;padding:8px 3px;color:#cddced;font-weight:800;font-size:11px}.tile:hover,.biome:hover,.color-choice:hover{border-color:#79cdad}.tile .tileicon{font-size:27px;line-height:1.1;filter:drop-shadow(0 4px 3px #0006)}.biomes{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.biome{border:1px solid #314960;border-radius:13px;overflow:hidden;background:#0d1c30;color:#c9d7e5;padding:0 0 10px;font-size:11px;font-weight:800}.biome-illustration{width:100%;height:76px;display:block;margin-bottom:8px;image-rendering:pixelated;image-rendering:crisp-edges;background:#6cc6fa}
 .smalltitle{font-size:11px;font-weight:900;letter-spacing:.5px;color:#92aac0;text-transform:uppercase;margin:0 0 13px}.option-line{display:flex;justify-content:space-between;align-items:center;gap:12px}.number{color:#b5f9ce;font-size:16px;font-weight:900}.range{width:100%;height:7px;appearance:none;background:#314964;border-radius:20px;outline:0;margin:14px 0 4px;accent-color:var(--a)}.range::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:5px;background:#b2f9ce;border:3px solid #3a9872;box-shadow:0 2px 10px #10221e;cursor:pointer}.range::-moz-range-thumb{width:14px;height:14px;border-radius:5px;background:#b2f9ce;border:3px solid #3a9872;cursor:pointer}.range-ends{display:flex;justify-content:space-between;color:#8fa4bb;font-size:11px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:9px 13px;border-radius:10px;color:#c4d2df;background:#0c1a2d;border:1px solid #334961;font-weight:850;font-size:12px}.chip[aria-pressed=true]{color:#fff;background:#3a82692c;border-color:#83e6aa}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{display:flex;gap:10px;align-items:center;padding:12px 11px;background:#0e1b2d;border:1px solid #314960;border-radius:11px;font-size:13px;font-weight:750;color:#cad9e7;cursor:pointer}.check input{accent-color:#75dc9d;width:17px;height:17px}.hint{color:#879db3;font-size:12px;margin-top:11px}.right-col{display:flex;flex-direction:column;gap:17px}.preview-wrap{padding:16px}.paneltitle{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 2px 12px;font-weight:900;font-size:17px}.live{color:#8ef4b3;font-size:10px;font-weight:950;letter-spacing:1.2px}.live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#8ef4b3;box-shadow:0 0 9px #8ef4b3;margin-right:8px;vertical-align:middle}.stage{overflow:hidden;border-radius:13px;border:1px solid #3a4e63;background:#142a42;position:relative;aspect-ratio:9/5}.stage canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.stage-hint{color:#9badc0;font-size:11px;text-align:center;margin-top:12px}.prompt-wrap{padding:16px}.prompt-wrap textarea{width:100%;min-height:220px;max-height:380px;resize:vertical;border-radius:12px;background:#0a1729;color:#d4e9ff;border:1px solid #344b63;padding:15px 16px;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;outline:0}.prompt-wrap textarea:focus{border-color:#8addb0}.prompt-meta{font-size:11px;color:#8ba2b7;font-weight:500}.copy{margin-top:9px;width:100%;border:0;min-height:47px;border-radius:12px;background:linear-gradient(95deg,#7beaab,#f4d67c);color:#102527;font-weight:950;box-shadow:0 9px 25px #65e3a021;transition:transform .15s,filter .15s}.copy:hover{transform:translateY(-1px);filter:brightness(1.06)}.copy:active{transform:translateY(1px)}.foot{padding:25px 0 34px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:#768fa5;font-size:11px}.muted{color:#8ba1b4}.sep{border:0;border-top:1px solid #2a3e52;margin:22px 0}.skin-row{display:flex;align-items:center;gap:16px;background:#102337;border:1px solid #304b60;border-radius:14px;padding:12px;margin-top:2px}.skin-preview{width:68px;height:84px;flex:none;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#3a6b6b55,transparent);image-rendering:pixelated}.skin-preview svg{width:54px;height:78px;shape-rendering:crispEdges}.skin-text{font-size:12px;color:#9db4c5}.skin-text b{font-size:14px;color:#f1fbff;display:block;margin-bottom:4px}.footbar{margin-top:16px;display:flex;gap:10px;justify-content:space-between}.footbar button{border:1px solid #36506b;color:#d8e7f4;border-radius:10px;background:#233750;padding:8px 12px;font-size:12px;font-weight:800}.footbar button.primary{color:#0b251a;background:#a1ecb7;border-color:#b6f3c7}.footbar button:hover{filter:brightness(1.12)}@media(max-width:1080px){.wrap{width:min(1200px,calc(100% - 36px))}.settings{padding:20px}.biomes,.tile-grid{grid-template-columns:repeat(3,1fr)}.biome-illustration{height:64px}}@media(max-width:760px){.wrap{width:min(660px,calc(100% - 24px))}.topbar{height:72px}.top-note{display:none}.hero-head{padding:16px 0 21px}.hero-head h1{letter-spacing:-2px}.layout{grid-template-columns:1fr;gap:16px}.settings{min-height:0;padding:21px 16px 23px}.nav button{font-size:12px;gap:4px;min-height:48px}.right-col{gap:15px}.preview-wrap,.prompt-wrap{padding:13px}.stage-hint{font-size:10px}.prompt-wrap textarea{min-height:230px}.foot{padding-top:19px}}@media(max-width:390px){.nav button{font-size:11px}.nav button .emoji{display:none}.biomes,.tile-grid{gap:6px}.tile{font-size:10px}.color-choice{padding:7px 8px;font-size:11px}.topbar .reset{font-size:12px;padding:8px 10px}}
+
+.stage canvas:focus-visible{outline:3px solid #b8f8c5;outline-offset:-3px}.preview-pad{display:none;justify-content:center;gap:7px;margin-top:12px}.preview-pad button{min-width:47px;height:43px;border:1px solid #54738c;border-radius:9px;background:#203a52;color:#f1fbff;font-size:19px;font-weight:900;touch-action:none;user-select:none;-webkit-user-select:none}.preview-pad button:active,.preview-pad button[aria-pressed=true]{background:#78e4aa;color:#0a2830}.preview-pad .preview-collect{font-size:12px;min-width:65px;background:#446a55}@media(max-width:900px){.preview-pad{display:flex}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="topbar">
     <div class="brand"><div class="brand-mark">▣</div> FLY<span>LAB</span> <span style="color:#a2d9b1;font-size:12px;letter-spacing:1px;margin-left:3px">BLOCKS</span></div>
-    <div style="display:flex;align-items:center;gap:16px"><div class="top-note">КОНСТРУКТОР ПРОМПТОВ · V2</div><button class="reset" id="reset">↺ Сбросить</button></div>
+    <div style="display:flex;align-items:center;gap:16px"><div class="top-note">КОНСТРУКТОР ПРОМПТОВ · V3</div><button class="reset" id="reset">↺ Сбросить</button></div>
   </header>
   <section class="hero-head">
     <div class="eyebrow"><i></i> СОЗДАЙ СВОЁ ПРИКЛЮЧЕНИЕ</div>
     <h1>Мир из блоков.<br><span class="gradient">Игра по твоим правилам.</span></h1>
-    <p class="subhead">Выбирай детали → смотри превью → копируй промпт для CodePen.</p>
+    <p class="subhead">Выбирай настройки · Проверяй мир · Копируй промпт.</p>
   </section>
   <main class="layout">
     <section class="panel" aria-label="Настройки игры">
@@ -43,14 +45,14 @@
           <div class="field"><div class="fieldlabel">Биом</div><div class="biomes" id="biome"></div></div>
           <div class="field"><div class="option-line"><label for="mapSize" style="margin:0">Размер карты</label><span class="number" id="mapSizeValue">16 × 16</span></div><input class="range" id="mapSize" type="range" min="12" max="24" step="4" value="16"><div class="range-ends"><span>Компактная</span><span>Большая</span></div></div>
           <div class="field"><div class="fieldlabel">Погода</div><div class="chips" id="weather"></div></div>
-          <div class="field"><div class="fieldlabel">Детали окружения</div><div class="checks"><label class="check"><input id="clouds" type="checkbox" checked> Движущиеся облака</label><label class="check"><input id="particles" type="checkbox" checked> Атмосферные частицы</label><label class="check"><input id="glints" type="checkbox" checked> Пиксельные блики</label></div></div>
+          
           <p class="hint">На карте всегда есть земля, трава, камень, деревья и вода.</p>
         </div>
         <div class="tab" id="tab-loot" role="tabpanel" hidden>
           <div class="rowhead"><h2>Собирай ресурсы</h2><span class="counter">03 / 04</span></div>
           <div class="field"><div class="fieldlabel">Что ищем?</div><div class="tile-grid" id="resource"></div></div>
           <div class="field"><div class="option-line"><label for="resourceCount" style="margin:0">Количество ресурсов</label><span class="number" id="resourceCountValue">6 шт.</span></div><input class="range" id="resourceCount" type="range" min="5" max="25" step="1" value="6"><div class="range-ends"><span>5</span><span>25</span></div></div>
-          <div class="field"><div class="fieldlabel">Эффект сбора</div><div class="chips" id="pickup"></div></div>
+          
           <div class="skin-row"><div style="font-size:38px;line-height:1">🏆</div><div class="skin-text"><b>Цель: собрать всё</b>Подойди к ресурсу и нажми пробел. Собери все предметы, чтобы победить.</div></div>
         </div>
         <div class="tab" id="tab-enemies" role="tabpanel" hidden>
@@ -65,17 +67,17 @@
       </div>
     </section>
     <aside class="right-col">
-      <section class="panel preview-wrap"><div class="paneltitle">Превью мира <span class="live">LIVE PREVIEW</span></div><div class="stage"><canvas id="preview" width="900" height="500" aria-label="Анимированный предварительный вид игрового мира"></canvas></div><div class="stage-hint">◈ Квадратные блоки • Вид сверху • Анимация</div></section>
+      <section class="panel preview-wrap"><div class="paneltitle">Превью мира <span class="live">LIVE PREVIEW</span></div><div class="stage"><canvas id="preview" width="900" height="500" tabindex="0" aria-label="Игровое превью: удерживай WASD или стрелки для движения, пробел — собрать ресурс"></canvas></div><div class="stage-hint">Клик по полю · Удерживай WASD / стрелки · Пробел — сбор</div><div class="preview-pad" aria-label="Сенсорное управление превью"><button type="button" data-hold="arrowleft" aria-label="Влево">←</button><button type="button" data-hold="arrowup" aria-label="Вверх">↑</button><button type="button" data-hold="arrowdown" aria-label="Вниз">↓</button><button type="button" data-hold="arrowright" aria-label="Вправо">→</button><button type="button" data-hold="space" class="preview-collect" aria-label="Собрать предмет">Сбор</button></div></section>
       <section class="panel prompt-wrap"><div class="paneltitle">Готовый промпт <span class="prompt-meta" id="promptLength">0 знаков</span></div><textarea id="prompt" aria-label="Готовый промпт" spellcheck="false" readonly></textarea><button type="button" id="copy" class="copy">📋 Скопировать промпт</button></section>
     </aside>
   </main>
-  <footer class="foot"><span>FLYLAB BLOCKS · Без библиотек и регистрации</span><span>Промпт → HTML-код → CodePen</span></footer>
+  <footer class="foot"><span>FLYLAB BLOCKS · Конструктор игры</span><span>Готовый HTML-промпт</span></footer>
 </div>
 <script>
 (() => {
 'use strict';
 const $=id=>document.getElementById(id);
-const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',mapSize:16,weather:'Ясно',clouds:true,particles:true,glints:true,resource:'Алмазы',resourceCount:6,pickup:'Искры',enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Умеренно'};
+const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',mapSize:16,weather:'Ясно',resource:'Алмазы',resourceCount:6,enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Умеренно'};
 let state={...defaults};
 const options={
  shirt:[['Синий','#3789ed'],['Зелёный','#4acc7b'],['Красный','#ef5f64'],['Жёлтый','#f6cb55'],['Фиолетовый','#a984ff']],
@@ -84,7 +86,6 @@ const options={
  resource:[['Алмазы','💎'],['Золото','🪙'],['Яблоки','🍎'],['Монеты','💰'],['Кристаллы','🔮']],
  enemy:[['Зомби','🧟'],['Скелеты','💀'],['Пауки','🕷️'],['Монстры','👾']],
  weather:[['Ясно'],['Облачно'],['Дождь'],['Снег']],
- pickup:[['Искры'],['Вспышка'],['Звёздочки']],
  enemySpeed:[['Медленно'],['Умеренно'],['Быстро']]
 };
 const shirtHex={'Синий':'#3789ed','Зелёный':'#4acc7b','Красный':'#ef5f64','Жёлтый':'#f6cb55','Фиолетовый':'#a984ff'};
@@ -98,10 +99,10 @@ function group(key,type){
   else if(type==='biome'){b.className='biome';const art=document.createElement('canvas');art.className='biome-illustration';art.width=144;art.height=76;drawBiomeThumb(art,value);b.append(art,document.createTextNode(value));}
   else if(type==='tile'){b.className='tile';const icon=document.createElement('span');icon.className='tileicon';icon.textContent=symbol;b.append(icon,document.createTextNode(value));}
   else{b.className='chip';b.textContent=value;}
-  b.addEventListener('click',()=>{state[key]=value;refresh();});root.append(b);
+  b.addEventListener('click',()=>{if(key==='resource')collectedPreview.clear();state[key]=value;refresh();});root.append(b);
  }
 }
-function renderGroups(){group('shirt','color');group('hair','color');group('biome','biome');group('resource','tile');group('enemy','tile');group('weather','chip');group('pickup','chip');group('enemySpeed','chip');}
+function renderGroups(){group('shirt','color');group('hair','color');group('biome','biome');group('resource','tile');group('enemy','tile');group('weather','chip');group('enemySpeed','chip');}
 function showTab(index){tabIndex=Math.max(0,Math.min(tabNames.length-1,index));for(const [i,name] of tabNames.entries()){
  const active=i===tabIndex;const t=$('tab-'+name);t.classList.toggle('active',active);t.hidden=!active;
  const btn=document.querySelector(`.nav [data-tab="${name}"]`);btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active));}
@@ -110,16 +111,14 @@ for(const [index,name] of tabNames.entries())document.querySelector(`[data-tab="
 $('prevTab').addEventListener('click',()=>showTab(tabIndex-1));
 $('nextTab').addEventListener('click',()=>{if(tabIndex===tabNames.length-1){$('prompt').focus();$('prompt').scrollIntoView({block:'nearest',behavior:'smooth'});}else showTab(tabIndex+1);});
 $('title').addEventListener('input',e=>{state.title=e.target.value;refresh(false);});
-for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);refresh(false);});
-for(const key of ['clouds','particles','glints'])$(key).addEventListener('change',e=>{state[key]=e.target.checked;refresh(false);});
-$('reset').addEventListener('click',()=>{state={...defaults};$('title').value=state.title;for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).value=state[key];for(const key of ['clouds','particles','glints'])$(key).checked=state[key];refresh();showTab(0);});
+for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);if(key==='resourceCount')collectedPreview.clear();refresh(false);});
+$('reset').addEventListener('click',()=>{collectedPreview.clear();player.x=826;player.y=238;pressed.clear();state={...defaults};$('title').value=state.title;for(const key of ['mapSize','resourceCount','enemyCount','health'])$(key).value=state[key];refresh();showTab(0);});
 const biomes={
  'Лес':'дневное небо и зелёный лес', 'Горы':'горный пейзаж', 'Пустыня':'пустыня', 'Снег':'снежный мир', 'Ночь':'ночной мир со звёздами'
 };
 const enemies={'Зомби':'зомби','Скелеты':'скелеты','Пауки':'пауки','Монстры':'маленькие монстры'};
 const resourceWords={'Алмазы':'алмазы','Золото':'золото','Яблоки':'яблоки','Монеты':'монеты','Кристаллы':'кристаллы'};
 const speedWords={'Медленно':'медленно и предсказуемо','Умеренно':'с умеренной скоростью','Быстро':'быстро, но с возможностью увернуться'};
-const pickupWords={'Искры':'маленькие искры','Вспышка':'короткая световая вспышка','Звёздочки':'разлетающиеся звёздочки'};
 const weatherWords={
  'Ясно':'ясно: светлое небо, квадратное солнце и яркое освещение',
  'Облачно':'облачно: плотные кубические облака, приглушённое освещение и сероватое небо',
@@ -132,22 +131,22 @@ function makePrompt(){
  return `Ты — опытный разработчик браузерных игр. Создай красивую законченную мини-игру в пиксельном стиле Minecraft, визуально похожую на классическую игру с видом СВЕРХУ, как на примере: квадратные плитки земли, компактные пиксельные деревья, объёмные прямоугольные каменные стены, квадратный пруд, маленькие блочные персонажи, яркие коллекционные предметы, полосы текстуры на плитках. Это НЕ вид от первого лица, НЕ плоский сайд-скроллер и НЕ изометрия: игровая камера строго сверху под небольшим углом, чтобы были видны лица героев и передние грани блоков. Все предметы должны быть пропорциональны друг другу. Никаких треугольных гор, круглых холмов и размытых градиентных фигур в мире игры.
 
 КОНЦЕПЦИЯ
-Название: «${title}». Герой — узнаваемый человек с пиксельными головой, волосами, двумя руками, корпусом и двумя ногами, а не один квадрат. Футболка: ${state.shirt.toLowerCase()}. Волосы: ${state.hair.toLowerCase()}. Движение анимируется коротким шагом.
+Название игры строго «${title}». Показывай только это название, без добавлений «для CodePen» или иных слов. Герой — узнаваемый человек с пиксельными головой, волосами, двумя руками, корпусом и двумя ногами, а не один квадрат. Футболка: ${state.shirt.toLowerCase()}. Волосы: ${state.hair.toLowerCase()}. Движение анимируется коротким шагом.
 
 КАРТА И МИР
-Биом: ${b}. Размер карты: ${state.mapSize} × ${state.mapSize} клеток. Canvas 900 × 500, горизонтальный, адаптивный. Клетки строгие прямоугольные 2.5D-блоки с пиксельными швами и небольшой тенью. Карта включает землю, траву, квадратные деревья, серые каменные блоки, голубую воду; по ней есть проходимые коридоры, сквозь стены и воду проходить нельзя. Несколько групп блоков создают лабиринт, как на примере; все объекты из прямоугольных пикселей. Карта целиком видна на широком экране, при большом размере камера плавно следует за героем. Погода: ${weatherWords[state.weather]}. ${state.clouds?'Квадратные облака медленно движутся поверх мира и дают лёгкую тень.':'Без декоративных движущихся облаков.'} ${state.particles?'Добавь движущиеся мелкие атмосферные квадратные частицы, заметные, но не закрывающие карту.':'Без атмосферных декоративных частиц; обязательные осадки погоды остаются.'} ${state.glints?'Добавь видимые мерцающие пиксельные блики на воде и предметах.':'Без дополнительных мерцающих бликов.'}
+Биом: ${b}. Размер карты: ${state.mapSize} × ${state.mapSize} клеток. Canvas 900 × 500, горизонтальный, адаптивный. Клетки строгие прямоугольные 2.5D-блоки с пиксельными швами и небольшой тенью. Карта включает землю, траву, квадратные деревья, серые каменные блоки, голубую воду; по ней есть проходимые коридоры, сквозь стены и воду проходить нельзя. Несколько групп блоков создают лабиринт, как на примере; все объекты из прямоугольных пикселей. Карта целиком видна на широком экране, при большом размере камера плавно следует за героем. Погода: ${weatherWords[state.weather]}. Осадки показывай анимацией из квадратных пикселей.
 
 РЕСУРСЫ
-Собираемый предмет: ${thing}. Всего ${state.resourceCount} шт. Расположи их случайно только на проходимых клетках, вдали от стартовой позиции. Предмет нарисован отдельным пиксельным спрайтом, чуть парит над плиткой. Герой перемещается WASD/стрелками; если подошёл близко, по пробелу подбирает ресурс. Подобранный ресурс исчезает, счёт повышается на 1, появляется эффект: ${pickupWords[state.pickup]}. Когда собраны ВСЕ предметы, покажи крупный экран «ПОБЕДА!» и кнопку «Играть снова».
+Собираемый предмет: ${thing}. Всего ${state.resourceCount} шт. Расположи их случайно только на проходимых клетках, вдали от стартовой позиции. Предмет нарисован отдельным пиксельным спрайтом, чуть парит над плиткой. Герой плавно перемещается при удержании WASD/стрелок; если подошёл близко, по пробелу подбирает ресурс. Подобранный ресурс сразу исчезает, счёт повышается на 1. Когда собраны ВСЕ предметы, покажи крупный экран «ПОБЕДА!» и кнопку «Играть снова».
 
 ВРАГИ
 Враги: ${enemy}, количество — ${state.enemyCount}. Они выглядят как маленькие блочные существа с лицами и самостоятельно ходят по карте ${speedWords[state.enemySpeed]}; стены и воду обходят. Герой начинает с ${state.health} здоровья. При столкновении теряет одно сердце, получает краткую неуязвимость и отбрасывается на безопасную клетку. Когда сердца кончились, покажи «Игра окончена», счёт и «Играть снова».
 
 ЭКРАНЫ И УПРАВЛЕНИЕ
-Стартовое меню с названием «${title}», кнопка «Начать игру», затем обратный отсчёт 3–2–1. Игровой HUD — широкая узкая полупрозрачная полоса сверху карты: слева крупный белый текст «${thing.charAt(0).toUpperCase()+thing.slice(1)}: 0 / ${state.resourceCount}», справа красные пиксельные сердечки здоровья. Клавиши WASD/стрелки — движение, Space — сбор; на планшете сенсорные кнопки. Упругие анимации, без резких рывков, без блокировок клавиатуры. На победном экране — кнопка «Победа» для новой попытки.
+Стартовое меню с названием «${title}», кнопка «Начать игру», затем обратный отсчёт 3–2–1. Игровой HUD — широкая узкая полупрозрачная полоса сверху карты: слева крупный белый текст «${thing.charAt(0).toUpperCase()+thing.slice(1)}: 0 / ${state.resourceCount}», справа красные пиксельные сердечки здоровья. WASD и стрелки — непрерывное движение: пока клавиша зажата, персонаж продолжает идти плавно каждый кадр (а не сдвигается на одну клетку при каждом keydown). Используй отслеживание зажатых клавиш через keydown/keyup, игровой цикл requestAnimationFrame и deltaTime; скорость не должна зависеть от FPS. Нормализуй диагональное движение, проверяй коллизии по каждой оси и отпускай все клавиши при потере фокуса. Space — сбор ресурсов по отдельному нажатию. На планшете добавь сенсорные кнопки с таким же непрерывным движением, пока палец удерживает кнопку. Анимации шага и плавное движение без рывков и без зависания клавиш. На победном экране — кнопка «Победа» для новой попытки.
 
 ТЕХНИЧЕСКИЕ УСЛОВИЯ
-ВЕСЬ проект — один готовый HTML-код для прямой вставки в HTML-панель CodePen, JS Bin или редактор; CSS внутри <style>, JavaScript внутри <script>. Без библиотек, фреймворков, отдельных файлов, внешних картинок и ассетов. Вся пиксельная графика создаётся Canvas или CSS. Должны работать запуск, коллизии, анимации, счёт, противники, поражение и победа. Код структурированный, до 1000 строк, без синтаксических ошибок.
+ВЕСЬ проект — один готовый HTML-код для прямой вставки в HTML-редактор; CSS внутри <style>, JavaScript внутри <script>. Без библиотек, фреймворков, отдельных файлов, внешних картинок и ассетов. Вся пиксельная графика создаётся Canvas или CSS. Должны работать запуск, коллизии, анимации, счёт, противники, поражение и победа. Код структурированный, до 1000 строк, без синтаксических ошибок.
 
 ОТВЕТ: только полный HTML-код от <!DOCTYPE html> до </html>. Никаких файлов, Markdown, обратных кавычек, объяснений и других вариантов настроек. Используй только явно выбранные выше параметры.`;
 }
@@ -166,6 +165,76 @@ $('copy').addEventListener('click',async()=>{
 // Превью игры, основанное на пиксельном виде сверху со скриншота.
 const cv=$('preview'),ctx=cv.getContext('2d');
 const W=cv.width,H=cv.height;
+// Управление превью: состояние клавиш, а не по одному сдвигу на keydown.
+const pressed=new Set();
+const player={x:826,y:238,vx:0,vy:0};
+const collectedPreview=new Set();
+let lastTick=0;
+const controlKeys=new Set(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','space']);
+function visibleResourceCount(){return Math.min(Math.max(3,Math.ceil(state.resourceCount/2)),loot0.length);}
+function collectNearby(){
+ let best=-1,dist=48;
+ for(let i=0;i<visibleResourceCount();i++){
+  if(collectedPreview.has(i))continue;
+  const [x,y]=loot0[i],d=Math.hypot(player.x-x*TILE,player.y-y*TILE);
+  if(d<dist){dist=d;best=i;}
+ }
+ if(best>=0)collectedPreview.add(best); // Без эффекта сбора: предмет исчезает.
+}
+function canUsePreviewKeys(){
+ const focused=document.activeElement;
+ return !focused || focused===document.body || focused===document.documentElement || focused===cv;
+}
+window.addEventListener('keydown',e=>{
+ const key=e.code==='Space'?'space':e.key.toLowerCase();
+ if(!controlKeys.has(key)||!canUsePreviewKeys()||e.ctrlKey||e.altKey||e.metaKey)return;
+ e.preventDefault();
+ if(key==='space' && !pressed.has(key))collectNearby();
+ pressed.add(key);
+});
+window.addEventListener('keyup',e=>pressed.delete(e.code==='Space'?'space':e.key.toLowerCase()));
+window.addEventListener('blur',()=>pressed.clear());
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pressed.clear();});
+cv.addEventListener('pointerdown',()=>cv.focus({preventScroll:true}));
+for(const button of document.querySelectorAll('[data-hold]')){
+ const key=button.dataset.hold;
+ const release=()=>{pressed.delete(key);button.setAttribute('aria-pressed','false')};
+ button.addEventListener('pointerdown',e=>{
+  e.preventDefault();button.setPointerCapture?.(e.pointerId);
+  if(key==='space')collectNearby();
+  pressed.add(key);button.setAttribute('aria-pressed','true');
+ });
+ button.addEventListener('pointerup',release);
+ button.addEventListener('pointercancel',release);
+ button.addEventListener('lostpointercapture',release);
+}
+function previewBlocked(x,y){
+ const foot=y+13,pad=10;
+ if(x<18||x>W-18||y<65||y>H-42)return true;
+ const all=state.biome==='Горы'?[...stones0,[7,1,3,2],[4,3,2,2]]:stones0;
+ for(const [tx,ty,tw,th] of all){
+  const rx=tx*TILE,ry=ty*TILE,rw=tw*TILE,rh=th*TILE;
+  if(x+pad>rx&&x-pad<rx+rw&&foot+pad>ry&&foot-pad<ry+rh)return true;
+ }
+ const wx=8*TILE,wy=2*TILE;
+ if(x+pad>wx&&x-pad<wx+TILE*2&&foot+pad>wy&&foot-pad<wy+TILE*2)return true;
+ return false;
+}
+function updateMovement(now){
+ const dt=lastTick?Math.min((now-lastTick)/1000,.04):0;
+ lastTick=now;
+ let mx=Number(pressed.has('d')||pressed.has('arrowright'))-Number(pressed.has('a')||pressed.has('arrowleft'));
+ let my=Number(pressed.has('s')||pressed.has('arrowdown'))-Number(pressed.has('w')||pressed.has('arrowup'));
+ const mag=Math.hypot(mx,my);
+ if(mag){mx/=mag;my/=mag;}
+ const speed=172;
+ player.vx=mx*speed;player.vy=my*speed;
+ // Проверка отдельно по осям: герой не пересекает камни и воду.
+ const nx=player.x+player.vx*dt;
+ if(!previewBlocked(nx,player.y))player.x=nx;
+ const ny=player.y+player.vy*dt;
+ if(!previewBlocked(player.x,ny))player.y=ny;
+}
 let frame=0,fx=[],flash=null;
 const rand=(seed)=>{let n=Math.sin(seed*127.1+seed*seed*0.03)*43758.5453;return n-Math.floor(n)};
 const R=(x,y,w,h,color)=>{ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.ceil(w),Math.ceil(h))};
@@ -203,7 +272,7 @@ function stoneBlock(x,y,w,h,col,seed=0){
 }
 function brick(x,y,w,h,col,seed){
  stoneBlock(x,y,w,h,col,seed);
- if(state.glints)R(x+5,y+5,Math.max(8,w-13),3,'#ffffff4a');
+ R(x+5,y+5,Math.max(8,w-13),3,'#ffffff4a');
 }
 function drawStoneCluster(tx,ty,ww,hh,col){
  for(let r=0;r<hh;r++)for(let c=0;c<ww;c++)brick((tx+c)*TILE,(ty+r)*TILE,TILE,TILE,col,tx*25+ty*7+c+r*11);
@@ -215,7 +284,7 @@ function water(x,y,col){
   R(ax+4,ay+34,TILE-12,5,'#0e3d8452');
  }
  R(x+TILE-28,y+TILE-12,28,11,'#09548d8e');
- if(state.glints){const shimmer=(Math.sin(frame/19)+1)/2;R(x+20,y+24+shimmer*10,21,4,'#d5f6ff');R(x+TILE+13,y+TILE+14,15,4,'#b0f1ff')}
+ {const shimmer=(Math.sin(frame/19)+1)/2;R(x+20,y+24+shimmer*10,21,4,'#d5f6ff');R(x+TILE+13,y+TILE+14,15,4,'#b0f1ff')}
 }
 function drawTree(cx,cy,scale,col,index){
  const x=cx*TILE,y=cy*TILE;const s=scale;
@@ -228,13 +297,13 @@ function drawTree(cx,cy,scale,col,index){
  } else {
   R(x-16*s,y-15*s,36*s,31*s,col.tree);R(x-11*s,y-20*s,27*s,11*s,col.treeHi);R(x-17*s,y-7*s,8*s,15*s,col.treeHi);
  }
- if(state.glints)R(x-9*s,y-11*s,6*s,5*s,'#ffffff55');
+ R(x-9*s,y-11*s,6*s,5*s,'#ffffff55');
 }
 function diamond(x,y,scale,color,twinkle){
  const s=scale;ctx.save();ctx.translate(x,y+Math.sin(frame/20+x)*3);
  ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,-15*s);ctx.lineTo(11*s,-3*s);ctx.lineTo(8*s,9*s);ctx.lineTo(0,16*s);ctx.lineTo(-10*s,8*s);ctx.lineTo(-11*s,-3*s);ctx.closePath();ctx.fill();
  R(-4*s,-7*s,9*s,14*s,'#aef8ff');R(3*s,-7*s,5*s,10*s,'#45a7db');R(-3*s,-11*s,6*s,3*s,'#e7ffff');
- if(state.glints&&twinkle){R(-14*s,-17*s,4*s,4*s,'#ffffff');R(12*s,5*s,4*s,4*s,'#ffffff')}
+ if(twinkle){R(-14*s,-17*s,4*s,4*s,'#ffffff');R(12*s,5*s,4*s,4*s,'#ffffff')}
  ctx.restore();
 }
 function drawResource(cx,cy,index,color){
@@ -244,7 +313,7 @@ function drawResource(cx,cy,index,color){
  if(kind==='Монеты'){R(x-11,y-11,22,24,'#9b722a');R(x-7,y-15,18,26,'#ffdf61');R(x-3,y-9,8,13,'#fffaac')}
  if(kind==='Золото'){R(x-14,y-10,30,19,'#a47824');R(x-11,y-14,30,20,'#fcd455');R(x-6,y-10,11,5,'#fff7ba');R(x-11,y+5,25,4,'#d89434')}
  if(kind==='Яблоки'){R(x-10,y-13,21,24,'#ca403c');R(x-6,y-17,13,26,'#ef584f');R(x,y-22,5,9,'#805136');R(x+5,y-22,12,7,'#49a661')}
- if(state.glints&&index%2===0){R(x-17,y-16,3,3,'#fff');R(x+14,y-9,3,3,'#fff')}
+ if(index%2===0){R(x-17,y-16,3,3,'#fff');R(x+14,y-9,3,3,'#fff')}
 }
 function drawEnemy(x,y,i){
  const bob=Math.sin(frame/(state.enemySpeed==='Быстро'?10:state.enemySpeed==='Медленно'?30:19)+i)*2;
@@ -262,11 +331,15 @@ function drawEnemy(x,y,i){
  } 
 }
 function drawPlayer(x,y){
- const top=y+Math.sin(frame/23)*2;
- R(x-14,top+27,29,8,'#15253d44');
- R(x-11,top-18,23,17,'#eab582');R(x-11,top-24,23,8,shirtHair());
- R(x-12,top-2,25,24,shirtHex[state.shirt]);R(x-17,top+1,5,18,'#e5ab80');R(x+13,top+1,5,18,'#e5ab80');R(x-8,top+23,8,15,'#334e85');R(x+3,top+23,8,15,'#334e85');
- R(x-6,top-12,4,4,'#22303a');R(x+4,top-12,4,4,'#22303a');R(x-2,top-5,7,2,'#b66c61');
+  const moving=Math.abs(player.vx)+Math.abs(player.vy)>.01;
+  const step=moving?Math.sin(frame*.26)*5:0;
+  const top=y+(moving?Math.abs(Math.sin(frame*.26))*1.5:Math.sin(frame/23)*1.5);
+  R(x-14,top+34,29,6,'#15253d44');
+  R(x-8,top+23+step,8,15,'#334e85');R(x+3,top+23-step,8,15,'#334e85');
+  R(x-11,top-18,23,17,'#eab582');R(x-11,top-24,23,8,shirtHair());
+  R(x-12,top-2,25,24,shirtHex[state.shirt]);
+  R(x-17,top+1-step*.55,5,18,'#e5ab80');R(x+13,top+1+step*.55,5,18,'#e5ab80');
+  R(x-6,top-12,4,4,'#22303a');R(x+4,top-12,4,4,'#22303a');R(x-2,top-5,7,2,'#b66c61');
 }
 function shirtHair(){return hairHex[state.hair]||'#785138'}
 function drawWeather(){
@@ -274,7 +347,7 @@ function drawWeather(){
  if(w==='Облачно' || w==='Дождь'){
   ctx.fillStyle=w==='Дождь'?'#213a5661':'#a2b6c842';ctx.fillRect(0,0,W,H);
  }
- if(state.clouds && w!=='Снег'){
+ if((w==='Облачно'||w==='Дождь') && w!=='Снег'){
   const ox=(frame*.3)%1100-160;ctx.save();ctx.globalAlpha=w==='Ясно'?.14:.25;
   R(ox,80,180,45,'#ffffff');R(ox+40,59,80,25,'#ffffff');R((ox+590)%1100,140,190,30,'#f1ffff');ctx.restore();
  }
@@ -283,14 +356,14 @@ function drawWeather(){
   const y=(i*103+frame*(w==='Дождь'?7.5:1.7))%(H+25)-5;
   if(w==='Дождь'){R(x,y,3,15,'#d6f2ffbf')}else{R(x,y,5,5,'#ffffffdc');R(x+2,y+2,2,2,'#a8cfe7')}
  }
- if(state.particles){for(let i=0;i<26;i++){
+ if(state.biome==='Ночь'){for(let i=0;i<26;i++){
   let x=(i*193+frame*.18*(i%3+1))%W,y=(i*117+Math.sin(frame/22+i)*12+H)%H;
   R(x,y,3+(i%2),3+(i%2),w==='Дождь'?'#9dc9ed8c':state.biome==='Ночь'?'#ffe9aebd':'#ffffffa6');
  }}
 }
 function drawHud(){
  R(0,0,W,35,'#666a6cc8');R(0,33,W,2,'#a4b4c388');
- const amount=Math.min(state.resourceCount,3);
+ const amount=collectedPreview.size;
  const resourceName=state.resource.toLowerCase();
  pixelText(`${resourceName.charAt(0).toUpperCase()+resourceName.slice(1)}: ${amount} / ${state.resourceCount}`,13,8,17,'#ffffff');
  const hp=state.health;
@@ -301,6 +374,7 @@ function drawHeart(x,y,s,col){
  R(x-s*.6,y+s*.1,s*1.3,s*.5,col);R(x-s*.33,y+s*.6,s*.7,s*.4,col);
 }
 function draw(t){
+ updateMovement(t);
  frame++;
  const col=theme();ctx.imageSmoothingEnabled=false;
  ctx.clearRect(0,0,W,H);
@@ -312,14 +386,15 @@ function draw(t){
  let trees=trees0;
  if(state.biome==='Пустыня')trees=trees0.slice(0,5);
  for(let i=0;i<trees.length;i++)drawTree(trees[i][0],trees[i][1],i%3===0?1.03:.87,col,i);
- const resourcesVisible=Math.min(Math.max(3,Math.ceil(state.resourceCount/2)),loot0.length);
+  const resourcesVisible=visibleResourceCount();
  for(let i=0;i<resourcesVisible;i++){
+  if(collectedPreview.has(i))continue;
    const [x,y]=loot0[i];drawResource(x,y,i,col);
  }
  for(let i=0;i<state.enemyCount;i++){
   const [x,y]=monsters0[i%monsters0.length];drawEnemy(x+(i>=monsters0.length?(i%2)*.6:0),y,i);
  }
- drawPlayer(W-25,72);
+ drawPlayer(player.x,player.y);
  drawWeather();
  drawHud();
  requestAnimationFrame(draw);
