@@ -99,7 +99,7 @@ function group(key,type){
   else if(type==='biome'){b.className='biome';const art=document.createElement('canvas');art.className='biome-illustration';art.width=144;art.height=76;drawBiomeThumb(art,value);b.append(art,document.createTextNode(value));}
   else if(type==='tile'){b.className='tile';const icon=document.createElement('span');icon.className='tileicon';icon.textContent=symbol;b.append(icon,document.createTextNode(value));}
   else{b.className='chip';b.textContent=value;}
-  b.addEventListener('click',()=>{if(key==='resource')collectedPreview.clear();state[key]=value;refresh();});root.append(b);
+  b.addEventListener('click',()=>{if(key==='resource')collectedPreview.clear();state[key]=value;if(key==='biome')resetEnemyActors();refresh();});root.append(b);
  }
 }
 function renderGroups(){group('shirt','color');group('hair','color');group('biome','biome');group('resource','tile');group('enemy','tile');group('weather','chip');group('enemySpeed','chip');}
@@ -112,7 +112,7 @@ $('prevTab').addEventListener('click',()=>showTab(tabIndex-1));
 $('nextTab').addEventListener('click',()=>{if(tabIndex===tabNames.length-1){$('prompt').focus();$('prompt').scrollIntoView({block:'nearest',behavior:'smooth'});}else showTab(tabIndex+1);});
 $('title').addEventListener('input',e=>{state.title=e.target.value;refresh(false);});
 for(const key of ['resourceCount','enemyCount','health'])$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);if(key==='resourceCount')collectedPreview.clear();refresh(false);});
-$('reset').addEventListener('click',()=>{collectedPreview.clear();player.x=826;player.y=238;pressed.clear();state={...defaults};$('title').value=state.title;for(const key of ['resourceCount','enemyCount','health'])$(key).value=state[key];refresh();showTab(0);});
+$('reset').addEventListener('click',()=>{collectedPreview.clear();player.x=826;player.y=238;pressed.clear();state={...defaults};resetEnemyActors();$('title').value=state.title;for(const key of ['resourceCount','enemyCount','health'])$(key).value=state[key];refresh();showTab(0);});
 const biomes={
  'Лес':'дневное небо и зелёный лес', 'Горы':'горный пейзаж', 'Пустыня':'пустыня', 'Снег':'снежный мир', 'Ночь':'ночной мир со звёздами'
 };
@@ -170,7 +170,7 @@ Canvas 900×500 px, горизонтальный. Это вид СВЕРХУ с 
 Начальная позиция — приблизительно (826 px; 238 px), справа в верхней половине игрового поля. Маленький пиксельный человек высотой 60–65 px и шириной около 35 px: квадратная голова телесного цвета #EAB582, пиксельные волосы, два тёмных глаза и рот, прямоугольный торс, ДВЕ отдельные руки, ДВЕ ноги в тёмно-синих штанах. Герой виден анфас, НЕ сбоку и НЕ спиной. Футболка: ${state.shirt.toLowerCase()}, цвет ${shirtHex[state.shirt]}. Волосы: ${state.hair.toLowerCase()}, цвет ${hairHex[state.hair]}. При движении ноги и руки попеременно смещаются на несколько пикселей; никаких больших мультяшных голов или полноэкранных героев.
 
 ПРЕДМЕТЫ И ВРАГИ
-Предмет для сбора: ${thing}; графический вид: ${resourceAppearance[state.resource]}. На фиксированном поле с самого начала видны ВСЕ ${state.resourceCount} предметов. Используй первые ${state.resourceCount} координат из списка (столбец;ряд): (10.5;3.5), (4.5;5.5), (3.5;6.5), (7.5;4.5), (12.5;5.5), (5.5;7.5), (2.5;3.5), (15.5;5.5), (6.5;1.5), (2.5;7.5), (11.5;6.5), (10.5;2.5), (4.5;2.5), (1.5;4.5), (14.5;4.5), (6.5;4.5), (11.5;1.5), (5.5;5.5), (7.5;5.5), (15.5;3.5), (10.5;7.5), (3.5;4.5), (0.5;3.5), (11.5;7.5), (15.5;7.5). Все предметы на доступных клетках; ничего за краями, в воде или внутри камня. Спрайты маленькие и слегка покачиваются. При сборе предмет исчезает.
+Предмет для сбора: ${thing}; графический вид: ${resourceAppearance[state.resource]}. На фиксированном поле с самого начала видны ВСЕ ${state.resourceCount} предметов. Используй первые ${state.resourceCount} координат из списка (столбец;ряд): (10.5;3.5), (4.5;5.5), (3.5;6.5), (7.5;4.5), (12.5;5.5), (5.5;7.5), (2.5;3.5), (15.5;5.5), (6.5;1.5), (2.5;7.5), (11.5;6.5), (10.5;2.5), (4.5;2.5), (1.5;4.5), (15.5;4.5), (6.5;4.5), (11.5;1.5), (5.5;5.5), (7.5;5.5), (15.5;3.5), (10.5;7.5), (3.5;3.5), (0.5;3.5), (12.5;7.5), (15.5;7.5). Все предметы на доступных клетках; ничего за краями, в воде или внутри камня. Спрайты маленькие и слегка покачиваются. При сборе предмет исчезает.
 Враги: ${enemy}, ${state.enemyCount} шт., дизайн — ${enemyAppearance[state.enemy]}. Начальные проходимые клетки первых трёх врагов: (9;5), (3;7), (11;4); остальных ставь только на свободные клетки. Враги перемещаются ${speedWords[state.enemySpeed]}. ОБЯЗАТЕЛЬНО: построй сетку проходимости 16×9, запрети стены, воду и границы. Используй поиск пути BFS или A* по 4 соседним клеткам, без диагонального прохода через углы. В спокойном состоянии враги выбирают достижимую патрульную точку, при близком игроке находят маршрут к его клетке. Маршрут пересчитывается при изменении цели или препятствии, но не каждый кадр; движение плавное от центра к центру клетки через deltaTime. Не двигай врагов случайной скоростью в стену. Анти-застревание: если за секунду враг сдвинулся меньше чем на 3 px, пересчитай путь и выбери новую достижимую цель. Не допускай дрожания на поворотах и застревания в блоках; проверяй столкновение по радиусу тела. Никакого появления врагов внутри стен/воды. Масштаб врагов как у героя.
 
 HUD И ЭКРАНЫ
@@ -284,9 +284,74 @@ function theme(){
 }
 const stones0=[ [1,1,3,2],[12,0,3,3],[0,5,2,3],[6,6,4,2],[13,6,2,2] ];
 const trees0=[[5.25,1.38],[3.5,4.45],[14.65,4.45],[2.5,7.4],[10.9,5.4],[11.9,7.4],[14.2,2.2]];
-const loot0=[[10.5,3.5],[4.5,5.5],[3.5,6.5],[7.5,4.5],[12.5,5.5],[5.5,7.5],[2.5,3.5],[15.5,5.5],[6.5,1.5],[2.5,7.5],[11.5,6.5],[10.5,2.5],[4.5,2.5],[1.5,4.5],[14.5,4.5],[6.5,4.5],[11.5,1.5],[5.5,5.5],[7.5,5.5],[15.5,3.5],[10.5,7.5],[3.5,4.5],[0.5,3.5],[11.5,7.5],[15.5,7.5]];
-const monsters0=[[9,5],[3,7],[11,4],[6,3],[2,4],[12,5],[4,7],[10,1]];
+const loot0=[[10.5,3.5],[4.5,5.5],[3.5,6.5],[7.5,4.5],[12.5,5.5],[5.5,7.5],[2.5,3.5],[15.5,5.5],[6.5,1.5],[2.5,7.5],[11.5,6.5],[10.5,2.5],[4.5,2.5],[1.5,4.5],[15.5,4.5],[6.5,4.5],[11.5,1.5],[5.5,5.5],[7.5,5.5],[15.5,3.5],[10.5,7.5],[3.5,3.5],[0.5,3.5],[12.5,7.5],[15.5,7.5]];
+const monsters0=[[9,5],[3,7],[11,4],[6,3],[2,4],[12,4],[4,7],[10,1]];
 const TILE=56.25;
+// Enemies use route finding across free cells, not oscillation against walls.
+const enemyActors=monsters0.map(([c,r])=>({x:(c+.5)*TILE,y:(r+.5)*TILE-13,path:[],wait:0,stuck:0,px:0,py:0}));
+function resetEnemyActors(){
+ for(let i=0;i<enemyActors.length;i++){
+  const a=enemyActors[i],[c,r]=monsters0[i];
+  Object.assign(a,{x:(c+.5)*TILE,y:(r+.5)*TILE-13,path:[],wait:0,stuck:0,px:0,py:0});
+ }
+}
+function passableCell(c,r){
+ if(!Number.isInteger(c)||!Number.isInteger(r)||c<0||c>=16||r<1||r>7)return false;
+ const walls=state.biome==='Горы'?[...stones0,[7,1,3,2],[4,3,2,2]]:stones0;
+ for(const [x,y,w,h] of walls)if(c>=x&&c<x+w&&r>=y&&r<y+h)return false;
+ return !(c>=8&&c<10&&r>=2&&r<4);
+}
+function gridRoute(start,goal){
+ if(!passableCell(start.c,start.r)||!passableCell(goal.c,goal.r))return [];
+ const key=(c,r)=>r*16+c,from=key(start.c,start.r),dest=key(goal.c,goal.r);
+ const prev=new Int16Array(144);prev.fill(-2);prev[from]=-1;
+ const queue=[from];
+ for(let qi=0;qi<queue.length&&prev[dest]===-2;qi++){
+  const id=queue[qi],c=id%16,r=Math.floor(id/16);
+  for(const [dx,dy] of [[1,0],[0,1],[-1,0],[0,-1]]){
+   const nc=c+dx,nr=r+dy,next=key(nc,nr);
+   if(passableCell(nc,nr)&&prev[next]===-2){prev[next]=id;queue.push(next);}
+  }
+ }
+ if(prev[dest]===-2)return [];
+ const path=[];
+ for(let cur=dest;cur!==from;cur=prev[cur])path.unshift({c:cur%16,r:Math.floor(cur/16)});
+ return path;
+}
+const patrolCells=[[10,5],[3,4],[11,3],[5,2],[2,3],[12,5],[4,5],[10,1],[15,4],[6,5],[10,7],[15,6]];
+function updateEnemyMovement(dt,t){
+ if(!dt)return;
+ const speed=state.enemySpeed==='Быстро'?76:state.enemySpeed==='Медленно'?34:53;
+ const target={c:Math.max(0,Math.min(15,Math.floor(player.x/TILE))),r:Math.max(1,Math.min(7,Math.floor((player.y+13)/TILE)))};
+ for(let i=0;i<state.enemyCount;i++){
+  const a=enemyActors[i],at={c:Math.floor(a.x/TILE),r:Math.floor((a.y+13)/TILE)};
+  a.wait-=dt;
+  if(a.wait<=0||!a.path.length){
+   const chase=Math.hypot(a.x-player.x,a.y-player.y)<TILE*4;
+   const base=Math.floor(t/3300)+i*3;
+   const goal=chase&&passableCell(target.c,target.r)?target:null;
+   let route=goal?gridRoute(at,goal):[];
+   if(!route.length)for(let j=0;j<patrolCells.length;j++){
+    const [c,r]=patrolCells[(base+j)%patrolCells.length];
+    route=gridRoute(at,{c,r});
+    if(route.length)break;
+   }
+   a.path=route;a.wait=chase?1.2:2.3;
+  }
+  if(!a.path.length)continue;
+  const waypoint=a.path[0],tx=(waypoint.c+.5)*TILE,ty=(waypoint.r+.5)*TILE-13;
+  const dx=tx-a.x,dy=ty-a.y,dist=Math.hypot(dx,dy);
+  if(dist<1){a.x=tx;a.y=ty;a.path.shift();continue;}
+  const step=Math.min(dist,speed*dt),nx=a.x+dx/dist*step,ny=a.y+dy/dist*step;
+  let moved=false;
+  if(!previewBlocked(nx,a.y)){a.x=nx;moved=true;}
+  if(!previewBlocked(a.x,ny)){a.y=ny;moved=true;}
+  if(Math.hypot(a.x-tx,a.y-ty)<1){a.x=tx;a.y=ty;a.path.shift();}
+  if(!moved){a.path=[];a.wait=0;}
+  if(Math.hypot(a.x-a.px,a.y-a.py)>2){a.px=a.x;a.py=a.y;a.stuck=0;}
+  else if((a.stuck+=dt)>1){a.path=[];a.wait=0;a.stuck=0;}
+ }
+}
 function tile(x,y,col,seed){
  R(x,y,TILE+1,TILE+1,(seed%2===0)?col.base:col.base2);
  // Ярус из светлых квадратных граней блока.
@@ -351,8 +416,7 @@ function drawResource(cx,cy,index,color){
 }
 function drawEnemy(x,y,i){
  const bob=Math.sin(frame/(state.enemySpeed==='Быстро'?10:state.enemySpeed==='Медленно'?30:19)+i)*2;
- x=x*TILE+Math.sin(frame/(48+i*8)+i)*14;
- y=y*TILE+bob;
+ y+=bob;
  const e=state.enemy;
  R(x-15,y+20,32,7,'#17312430');
  if(e==='Пауки'){
@@ -408,7 +472,9 @@ function drawHeart(x,y,s,col){
  R(x-s*.6,y+s*.1,s*1.3,s*.5,col);R(x-s*.33,y+s*.6,s*.7,s*.4,col);
 }
 function draw(t){
+ const dt=lastTick?Math.min((t-lastTick)/1000,.04):0;
  updateMovement(t);
+ updateEnemyMovement(dt,t);
  frame++;
  const col=theme();ctx.imageSmoothingEnabled=false;
  ctx.clearRect(0,0,W,H);
@@ -426,7 +492,7 @@ function draw(t){
    const [x,y]=loot0[i];drawResource(x,y,i,col);
  }
  for(let i=0;i<state.enemyCount;i++){
-  const [x,y]=monsters0[i%monsters0.length];drawEnemy(x+(i>=monsters0.length?(i%2)*.6:0),y,i);
+  const actor=enemyActors[i];drawEnemy(actor.x,actor.y,i);
  }
  drawPlayer(player.x,player.y);
  drawWeather();
