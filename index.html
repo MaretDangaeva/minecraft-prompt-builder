@@ -67,7 +67,7 @@
       </div>
     </section>
     <aside class="right-col">
-      <section class="panel preview-wrap"><div class="paneltitle">Превью мира <span class="live">LIVE PREVIEW</span></div><div class="stage"><canvas id="preview" width="900" height="500" tabindex="0" aria-label="Игровое превью: удерживай WASD или стрелки для движения, пробел — собрать ресурс"></canvas></div><div class="stage-hint">Клик по полю · Удерживай WASD / стрелки · Пробел — сбор</div><div class="preview-pad" aria-label="Сенсорное управление превью"><button type="button" data-hold="arrowleft" aria-label="Влево">←</button><button type="button" data-hold="arrowup" aria-label="Вверх">↑</button><button type="button" data-hold="arrowdown" aria-label="Вниз">↓</button><button type="button" data-hold="arrowright" aria-label="Вправо">→</button><button type="button" data-hold="space" class="preview-collect" aria-label="Собрать предмет">Сбор</button></div></section>
+      <section class="panel preview-wrap"><div class="paneltitle">Превью мира <span class="live">LIVE PREVIEW</span></div><div class="stage"><canvas id="preview" width="900" height="500" tabindex="0" aria-label="Игровое превью: удерживай WASD, ЦФЫВ или стрелки для движения, пробел — собрать ресурс"></canvas></div><div class="stage-hint">Клик по полю · Удерживай WASD / ЦФЫВ / стрелки · Пробел — сбор</div><div class="preview-pad" aria-label="Сенсорное управление превью"><button type="button" data-hold="arrowleft" aria-label="Влево">←</button><button type="button" data-hold="arrowup" aria-label="Вверх">↑</button><button type="button" data-hold="arrowdown" aria-label="Вниз">↓</button><button type="button" data-hold="arrowright" aria-label="Вправо">→</button><button type="button" data-hold="space" class="preview-collect" aria-label="Собрать предмет">Сбор</button></div></section>
       <section class="panel prompt-wrap"><div class="paneltitle">Готовый промпт <span class="prompt-meta" id="promptLength">0 знаков</span></div><textarea id="prompt" aria-label="Готовый промпт" spellcheck="false" readonly></textarea><button type="button" id="copy" class="copy">📋 Скопировать промпт</button></section>
     </aside>
   </main>
@@ -77,7 +77,7 @@
 (() => {
 'use strict';
 const $=id=>document.getElementById(id);
-const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',weather:'Ясно',resource:'Алмазы',resourceCount:6,enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Умеренно'};
+const defaults={title:'Minecraft Adventure',shirt:'Синий',hair:'Коричневый',biome:'Снег',weather:'Ясно',resource:'Алмазы',resourceCount:6,enemy:'Зомби',enemyCount:3,health:3,enemySpeed:'Медленно'};
 let state={...defaults};
 const options={
  shirt:[['Синий','#3789ed'],['Зелёный','#4acc7b'],['Красный','#ef5f64'],['Жёлтый','#f6cb55'],['Фиолетовый','#a984ff']],
@@ -118,7 +118,7 @@ const biomes={
 };
 const enemies={'Зомби':'зомби','Скелеты':'скелеты','Пауки':'пауки','Монстры':'маленькие монстры'};
 const resourceWords={'Алмазы':'алмазы','Золото':'золото','Яблоки':'яблоки','Монеты':'монеты','Кристаллы':'кристаллы'};
-const speedWords={'Медленно':'медленно и предсказуемо','Умеренно':'с умеренной скоростью','Быстро':'быстро, но с возможностью увернуться'};
+const speedWords={'Медленно':'очень медленно, около 27 пикселей в секунду, плавно и предсказуемо','Умеренно':'около 46 пикселей в секунду, без резких ускорений','Быстро':'около 64 пикселей в секунду, с возможностью увернуться'};
 const weatherWords={
  'Ясно':'ясно: светлое небо, квадратное солнце и яркое освещение',
  'Облачно':'облачно: плотные кубические облака, приглушённое освещение и сероватое небо',
@@ -171,14 +171,14 @@ Canvas 900×500 px, горизонтальный. Это вид СВЕРХУ с 
 
 ПРЕДМЕТЫ И ВРАГИ
 Предмет для сбора: ${thing}; графический вид: ${resourceAppearance[state.resource]}. На фиксированном поле с самого начала видны ВСЕ ${state.resourceCount} предметов. Используй первые ${state.resourceCount} координат из списка (столбец;ряд): (10.5;3.5), (4.5;5.5), (3.5;6.5), (7.5;4.5), (12.5;5.5), (5.5;7.5), (2.5;3.5), (15.5;5.5), (6.5;1.5), (2.5;7.5), (11.5;6.5), (10.5;2.5), (4.5;2.5), (1.5;4.5), (15.5;4.5), (6.5;4.5), (11.5;1.5), (5.5;5.5), (7.5;5.5), (15.5;3.5), (10.5;7.5), (3.5;3.5), (0.5;3.5), (12.5;7.5), (15.5;7.5). Все предметы на доступных клетках; ничего за краями, в воде или внутри камня. Спрайты маленькие и слегка покачиваются. При сборе предмет исчезает.
-Враги: ${enemy}, ${state.enemyCount} шт., дизайн — ${enemyAppearance[state.enemy]}. Начальные проходимые клетки первых трёх врагов: (9;5), (3;7), (11;4); остальных ставь только на свободные клетки. Враги перемещаются ${speedWords[state.enemySpeed]}. ОБЯЗАТЕЛЬНО: построй сетку проходимости 16×9, запрети стены, воду и границы. Используй поиск пути BFS или A* по 4 соседним клеткам, без диагонального прохода через углы. В спокойном состоянии враги выбирают достижимую патрульную точку, при близком игроке находят маршрут к его клетке. Маршрут пересчитывается при изменении цели или препятствии, но не каждый кадр; движение плавное от центра к центру клетки через deltaTime. Не двигай врагов случайной скоростью в стену. Анти-застревание: если за секунду враг сдвинулся меньше чем на 3 px, пересчитай путь и выбери новую достижимую цель. Не допускай дрожания на поворотах и застревания в блоках; проверяй столкновение по радиусу тела. Никакого появления врагов внутри стен/воды. Масштаб врагов как у героя.
+Враги: ${enemy}, ${state.enemyCount} шт., дизайн — ${enemyAppearance[state.enemy]}. Начальные проходимые клетки первых трёх врагов: (9;5), (3;7), (11;4); остальных ставь только на свободные клетки. Враги перемещаются ${speedWords[state.enemySpeed]}. Их движение спокойнее движения героя; скорость постоянна и НЕ ускоряется при погоне. ОБЯЗАТЕЛЬНО: построй сетку проходимости 16×9, запрети стены, воду и границы. Используй поиск пути BFS или A* по 4 соседним клеткам, без диагонального прохода через углы. В спокойном состоянии враги выбирают достижимую патрульную точку, при близком игроке находят маршрут к его клетке. Маршрут пересчитывается при изменении цели или препятствии, но не каждый кадр; движение плавное от центра к центру клетки через deltaTime. Не двигай врагов случайной скоростью в стену. Анти-застревание: если за секунду враг сдвинулся меньше чем на 3 px, пересчитай путь и выбери новую достижимую цель. Не допускай дрожания на поворотах и застревания в блоках; проверяй столкновение по радиусу тела. Никакого появления врагов внутри стен/воды. Масштаб врагов как у героя.
 
 HUD И ЭКРАНЫ
 Точно как в превью, ВНУТРИ верхних 35 px Canvas — тонкая полупрозрачная тёмно-серая горизонтальная полоска. Слева крупная белая жирная надпись «${thing.charAt(0).toUpperCase()+thing.slice(1)}: 0 / ${state.resourceCount}», справа ${state.health} ярко-красных ПИКСЕЛЬНЫХ сердечек. Не добавляй боковую панель, инвентарь, окна настроек и огромные HUD-карточки на игровой экран.
 Перед стартом — отдельное меню с названием «${title}» и кнопкой «Начать игру», затем 3–2–1. После отсчёта игрок должен увидеть именно описанную выше стартовую сцену. В конце всех сборов — экран «ПОБЕДА!» и кнопка «Играть снова»; при потере ${state.health} сердечек — «Игра окончена», результат и «Играть снова».
 
 ПРАВИЛА И УПРАВЛЕНИЕ
-Единственная карта ровно 16×9 клеток и полностью умещается в Canvas 900×500. Камера всегда статична (cameraX=0 и cameraY=0). НЕ создавай новых блоков при движении к краю; НЕ расширяй массив уровня, НЕ меняй размер Canvas, НЕ перемещай камеру и НЕ увеличивай мир. По краям герой и враги просто останавливаются. На узких экранах допускается только пропорционально уменьшить отображение всего Canvas через CSS, логическая карта прежняя. WASD или стрелки перемещают героя НЕПРЕРЫВНО ПРИ УДЕРЖАНИИ: движение каждый кадр, а не один шаг за один keydown. Используй keydown/keyup, игровой цикл requestAnimationFrame с deltaTime, нормализацию диагонального вектора и коллизии отдельно по осям. На телефоне и планшете — экранные кнопки с движением при удержании; при потере фокуса нажатия сбрасываются. Space рядом с предметом — одно действие сбора, +1 к счёту. При касании врага — минус одно сердце, короткая неуязвимость. При нуле здоровья — поражение, при сборе всех ресурсов — победа.
+Единственная карта ровно 16×9 клеток и полностью умещается в Canvas 900×500. Камера всегда статична (cameraX=0 и cameraY=0). НЕ создавай новых блоков при движении к краю; НЕ расширяй массив уровня, НЕ меняй размер Canvas, НЕ перемещай камеру и НЕ увеличивай мир. По краям герой и враги просто останавливаются. На узких экранах допускается только пропорционально уменьшить отображение всего Canvas через CSS, логическая карта прежняя. WASD при АНГЛИЙСКОЙ И РУССКОЙ раскладке (физические клавиши W/Ц — вверх, A/Ф — влево, S/Ы — вниз, D/В — вправо), а также стрелки перемещают героя НЕПРЕРЫВНО ПРИ УДЕРЖАНИИ: движение каждый кадр, а не один шаг за один keydown. Используй KeyboardEvent.code (KeyW, KeyA, KeyS, KeyD) независимо от языка раскладки и запасной разбор event.key для русских букв ц, ф, ы, в; обязательно одинаковую нормализацию клавиш в keydown И keyup, чтобы клавиши не зависали. Используй requestAnimationFrame с deltaTime, нормализацию диагонального вектора и коллизии отдельно по осям. На телефоне и планшете — экранные кнопки с движением при удержании; при потере фокуса нажатия сбрасываются. Space рядом с предметом — одно действие сбора, +1 к счёту. При касании врага — минус одно сердце, короткая неуязвимость. При нуле здоровья — поражение, при сборе всех ресурсов — победа.
 
 ТЕХНИЧЕСКИЕ УСЛОВИЯ И ФОРМАТ ОТВЕТА
 Весь проект в одном HTML-документе с CSS в style и JavaScript в script. Никаких внешних библиотек, шрифтов, ассетов и изображений, всё рисуется средствами HTML5 Canvas и CSS. До 1000 строк, рабочий код для вставки целиком в HTML-редактор. Проверь отсутствие синтаксических ошибок и работоспособность движения, коллизий, сбора, старта и финала.
@@ -205,6 +205,14 @@ const player={x:826,y:238,vx:0,vy:0};
 const collectedPreview=new Set();
 let lastTick=0;
 const controlKeys=new Set(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','space']);
+// Привязка по физическим клавишам работает с RU/EN раскладкой; кириллица — резервный вариант.
+const physicalKeys={KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',ArrowUp:'arrowup',ArrowDown:'arrowdown',ArrowLeft:'arrowleft',ArrowRight:'arrowright',Space:'space'};
+const letterKeys={'ц':'w','ф':'a','ы':'s','в':'d','w':'w','a':'a','s':'s','d':'d'};
+function movementKey(e){
+ if(physicalKeys[e.code])return physicalKeys[e.code];
+ const char=(e.key||'').toLowerCase();
+ return letterKeys[char]||({' ':'space',Space:'space',ArrowUp:'arrowup',ArrowDown:'arrowdown',ArrowLeft:'arrowleft',ArrowRight:'arrowright'}[e.key])||char;
+}
 function visibleResourceCount(){return Math.min(state.resourceCount,loot0.length);}
 function collectNearby(){
  let best=-1,dist=48;
@@ -220,13 +228,13 @@ function canUsePreviewKeys(){
  return !focused || focused===document.body || focused===document.documentElement || focused===cv;
 }
 window.addEventListener('keydown',e=>{
- const key=e.code==='Space'?'space':e.key.toLowerCase();
+ const key=movementKey(e);
  if(!controlKeys.has(key)||!canUsePreviewKeys()||e.ctrlKey||e.altKey||e.metaKey)return;
  e.preventDefault();
  if(key==='space' && !pressed.has(key))collectNearby();
  pressed.add(key);
 });
-window.addEventListener('keyup',e=>pressed.delete(e.code==='Space'?'space':e.key.toLowerCase()));
+window.addEventListener('keyup',e=>pressed.delete(movementKey(e)));
 window.addEventListener('blur',()=>pressed.clear());
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pressed.clear();});
 cv.addEventListener('pointerdown',()=>cv.focus({preventScroll:true}));
@@ -321,7 +329,7 @@ function gridRoute(start,goal){
 const patrolCells=[[10,5],[3,4],[11,3],[5,2],[2,3],[12,5],[4,5],[10,1],[15,4],[6,5],[10,7],[15,6]];
 function updateEnemyMovement(dt,t){
  if(!dt)return;
- const speed=state.enemySpeed==='Быстро'?76:state.enemySpeed==='Медленно'?34:53;
+ const speed=state.enemySpeed==='Быстро'?64:state.enemySpeed==='Медленно'?27:46;
  const target={c:Math.max(0,Math.min(15,Math.floor(player.x/TILE))),r:Math.max(1,Math.min(7,Math.floor((player.y+13)/TILE)))};
  for(let i=0;i<state.enemyCount;i++){
   const a=enemyActors[i],at={c:Math.floor(a.x/TILE),r:Math.floor((a.y+13)/TILE)};
